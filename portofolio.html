@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Putu Astika — Portfolio</title>
+  <meta name="description" content="Compact, fast, single‑file portfolio for showcasing skills, projects, and services." />
+  <meta name="color-scheme" content="dark light">
+  <meta property="og:title" content="uTuu — Portfolio" />
+  <meta property="og:description" content="Skills, projects, and contact in one lightweight page." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <style>
+    /* ========== Design Tokens & Theme ==========
+       Switch theme by toggling [data-theme="light"|"dark"] on <html>
+    */
+    :root {
+      --bg: #0b0e13;         /* surfaces */
+      --bg-soft: #0f141b;    /* cards */
+      --txt: #e6ebf2;        /* primary text */
+      --muted: #aab3c0;      /* secondary text */
+      --brand: #0ea5e9;      /* accent */
+      --brand-2: #22d3ee;    /* accent 2 */
+      --ok: #22c55e;         /* success */
+      --warn: #f59e0b;       /* warning */
+      --err: #ef4444;        /* error */
+      --ring: 0 0 0 2px color-mix(in oklab, var(--brand) 60%, transparent);
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --shadow-soft: 0 8px 18px rgba(0,0,0,.25);
+      --maxw: 1200px;
+      --grid-gap: clamp(14px, 2vw, 22px);
+      --pad: clamp(18px, 2.5vw, 28px);
+    }
+    html[data-theme="light"]{
+      --bg: #f7f7fb;
+      --bg-soft: #ffffff;
+      --txt: #0a0c10;
+      --muted: #4b5563;
+      --brand: #2563eb;
+      --brand-2: #06b6d4;
+      --shadow: 0 10px 30px rgba(2,6,23,.08);
+      --shadow-soft: 0 8px 18px rgba(2,6,23,.06);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--txt); background: radial-gradient(1200px 600px at 70% -10%, color-mix(in oklab, var(--brand), transparent 84%), transparent 60%), var(--bg);
+      letter-spacing:.2px; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Layout */
+    .wrap{max-width:var(--maxw); margin:0 auto; padding-inline: clamp(14px, 3vw, 36px)}
+    header{position:sticky; top:0; z-index:50; backdrop-filter: blur(10px); background: color-mix(in oklab, var(--bg), transparent 35%); border-bottom:1px solid color-mix(in oklab, var(--txt) 8%, transparent);}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700}
+    .logo{width:36px; height:36px; border-radius:10px; background: conic-gradient(from 210deg, var(--brand), var(--brand-2), var(--brand)); box-shadow: var(--shadow-soft)}
+    .nav a{color:var(--txt); opacity:.85}
+    .nav a:hover{opacity:1}
+    .links{display:flex; gap: clamp(10px, 2vw, 20px); align-items:center}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:.55rem .9rem; border-radius:12px; background:linear-gradient(180deg, color-mix(in oklab, var(--bg-soft), white 3%), color-mix(in oklab, var(--bg-soft), black 5%)); border:1px solid color-mix(in oklab, var(--txt) 10%, transparent); color:var(--txt); box-shadow: var(--shadow-soft); cursor:pointer}
+    .btn:hover{filter:brightness(1.04)}
+    .btn:active{transform:translateY(1px)}
+
+    /* Hero */
+    .hero{display:grid; grid-template-columns: 1.1fr .9fr; gap: var(--grid-gap); align-items:center; padding: min(9vh, 80px) 0}
+    .kicker{display:inline-grid; grid-auto-flow:column; gap:10px; align-items:center; font-size:.9rem; color:var(--muted)}
+    .badge{padding:.25rem .6rem; border-radius:999px; border:1px solid color-mix(in oklab, var(--txt) 12%, transparent); background: color-mix(in oklab, var(--bg-soft), black 2%)}
+    h1{font-size:clamp(30px, 4.5vw, 54px); line-height:1.1; margin:.35em 0 .2em}
+    .lead{font-size: clamp(1rem, 1.4vw, 1.15rem); color:var(--muted); max-width: 64ch}
+    .cta{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap}
+    .stats{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--grid-gap); margin-top:clamp(18px, 3vw, 28px)}
+    .stat{border:1px solid color-mix(in oklab, var(--txt) 10%, transparent); background:linear-gradient(180deg, color-mix(in oklab, var(--bg-soft), white 1%), color-mix(in oklab, var(--bg-soft), black 4%)); border-radius: var(--radius); padding:var(--pad); text-align:center}
+    .stat b{font-size:clamp(22px, 3vw, 34px)}
+
+    /* Sections */
+    section{padding: clamp(36px, 7vw, 80px) 0; scroll-margin-top: 90px}
+    .title{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom: clamp(18px, 2.5vw, 28px)}
+    .title h2{font-size: clamp(22px, 2.8vw, 32px); margin:0}
+    .subtitle{color:var(--muted); font-size:.95rem}
+
+    /* Cards & Grids */
+    .grid{display:grid; gap: var(--grid-gap)}
+    .grid.cols-3{grid-template-columns: repeat(3, minmax(0,1fr))}
+    .grid.cols-2{grid-template-columns: repeat(2, minmax(0,1fr))}
+    @media (max-width: 900px){
+      .hero{grid-template-columns: 1fr}
+      .grid.cols-3{grid-template-columns: 1fr 1fr}
+    }
+    @media (max-width: 640px){
+      .grid.cols-3, .grid.cols-2{grid-template-columns: 1fr}
+    }
+    .card{border:1px solid color-mix(in oklab, var(--txt) 10%, transparent); background:linear-gradient(180deg, color-mix(in oklab, var(--bg-soft), white 1%), color-mix(in oklab, var(--bg-soft), black 5%)); border-radius: var(--radius); overflow:hidden; box-shadow: var(--shadow)}
+    .card .body{padding: var(--pad)}
+    .meta{display:flex; gap:10px; align-items:center; color:var(--muted); font-size:.9rem}
+    .pill{padding:.25rem .6rem; border-radius:999px; border:1px solid color-mix(in oklab, var(--txt) 10%, transparent)}
+
+    .fake-img{aspect-ratio: 16/10; background: linear-gradient(135deg, color-mix(in oklab, var(--brand) 12%, transparent), color-mix(in oklab, var(--brand-2) 12%, transparent)); display:grid; place-items:center}
+    .fake-img svg{opacity:.8}
+
+    /* Skills */
+    .skillbar{height: 10px; background: color-mix(in oklab, var(--txt) 8%, transparent); border-radius: 999px; overflow:hidden}
+    .skillbar > i{display:block; height:100%; width: var(--val, 60%); background: linear-gradient(90deg, var(--brand), var(--brand-2))}
+
+    /* Footer */
+    footer{padding: 40px 0; border-top:1px solid color-mix(in oklab, var(--txt) 8%, transparent); color:var(--muted)}
+    .footgrid{display:grid; gap: var(--grid-gap); grid-template-columns: 1.2fr .8fr}
+    @media (max-width:800px){.footgrid{grid-template-columns:1fr}}
+
+    /* Utilities */
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+    .muted{color:var(--muted)}
+    .row{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+    .chip{border:1px solid color-mix(in oklab, var(--txt) 10%, transparent); border-radius:999px; padding:.4rem .7rem}
+    .ghost{background:transparent}
+    .right{margin-left:auto}
+
+    /* Animations (respect reduced motion) */
+    @media (prefers-reduced-motion: no-preference){
+      .rise{animation: rise .6s ease both}
+      @keyframes rise{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
+      .fadein{animation: fadein .7s ease both}
+      @keyframes fadein{from{opacity:0} to{opacity:1}}
+    }
+  </style>
+</head>
+<body>
+  <a class="sr-only" href="#main">Skip to content</a>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Putu Astika</span>
+      </div>
+      <nav class="links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <button class="btn ghost" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">☾/☼</button>
+        <a class="btn" href="#resume" onclick="window.print();return false;">Download Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <!-- ========== HERO ==========
+         Replace text below with your elevator pitch.
+    -->
+    <section class="hero">
+      <div>
+        <span class="kicker fadein"><span class="badge">Available for work</span> <span>Based Bali</span></span>
+        <h1 class="rise">Builder, Operator, Problem‑solver.</h1>
+        <p class="lead">I turn messy problems into clean systems—across operations, content, and lightweight code. Fast learner, bias to action, and allergic to fluff.</p>
+        <div class="cta">
+          <a class="btn" href="#projects">See Projects</a>
+          <a class="btn ghost" href="#contact">Get in Touch</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>10+ </b><div class="muted">projects shipped</div></div>
+          <div class="stat"><b>3</b><div class="muted">core skill stacks</div></div>
+          <div class="stat"><b><span id="yearExp">5</span>y</b><div class="muted">experience</div></div>
+        </div>
+      </div>
+      <div class="card rise" aria-label="Profile">
+        <div class="fake-img" role="img" aria-label="Profile placeholder">
+          <!-- Minimal placeholder avatar graphic -->
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="44" r="22" stroke="white" opacity=".7" stroke-width="3"/>
+            <rect x="22" y="72" width="76" height="36" rx="18" stroke="white" opacity=".7" stroke-width="3"/>
+          </svg>
+        </div>
+        <div class="body">
+          <h3 style="margin:.2em 0 0">Putu Astika</h3>
+          <p class="muted" style="margin:.3em 0 1em">Operator • Content • Lightweight Dev</p>
+          <div class="row">
+            <span class="chip">Ops Systems</span>
+            <span class="chip">Content & Branding</span>
+            <span class="chip">No‑Code & JS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ==========
+         Add a concise narrative and proof of work.
+    -->
+    <section id="about">
+      <div class="title">
+        <h2>About</h2>
+        <p class="subtitle">Short, sharp, and verifiable.</p>
+      </div>
+      <div class="grid cols-2">
+        <article class="card">
+          <div class="body">
+            <h3>Principles</h3>
+            <p>Think clearly. Move fast. Be useful. I design lean operational systems, ship content that converts, and build tiny tools when needed.</p>
+            <ul>
+              <li>Outcome > optics. I cut waste, automate, and standardize.</li>
+              <li>Write to think. Docs, checklists, and templates are default.</li>
+              <li>Bias to action. Iterate in public, measure, refine.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="card">
+          <div class="body">
+            <h3>Selected Highlights</h3>
+            <ul>
+              <li>Stabilized ops across 10+ properties with SOPs & QA loops.</li>
+              <li>Built content pipeline (brief → draft → publish) raising output 3×.</li>
+              <li>Coded small JS utilities to automate repetitive admin.</li>
+            </ul>
+            <p class="muted">Evidence available on request.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== SKILLS ==========
+         Adjust values via style="--val: NN%"
+    -->
+    <section id="skills">
+      <div class="title">
+        <h2>Skills</h2>
+        <p class="subtitle">T‑shaped: strong core, flexible edges.</p>
+      </div>
+      <div class="grid cols-3">
+        <article class="card"><div class="body">
+          <div class="meta"><b>Operations</b><span class="pill">SOP • QA • CX</span></div>
+          <p class="muted">System design, checklists, metrics, and training.</p>
+          <div class="skillbar" aria-label="Operations skill"><i style="--val:88%"></i></div>
+        </div></article>
+        <article class="card"><div class="body">
+          <div class="meta"><b>Content</b><span class="pill">Copy • Brand</span></div>
+          <p class="muted">Landing pages, social, blog ops, and simple design.</p>
+          <div class="skillbar" aria-label="Content skill"><i style="--val:82%"></i></div>
+        </div></article>
+        <article class="card"><div class="body">
+          <div class="meta"><b>Dev (Light)</b><span class="pill">HTML • CSS • JS</span></div>
+          <p class="muted">Single‑file sites, automations, and small tools.</p>
+          <div class="skillbar" aria-label="Dev skill"><i style="--val:70%"></i></div>
+        </div></article>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <span class="chip">Figma</span>
+        <!-- <span class="chip">Canva</span> -->
+        <span class="chip">Notion</span>
+        <span class="chip">VS Code</span>
+        <span class="chip">Git</span>
+        <span class="chip">SEO Basics</span>
+      </div>
+    </section>
+
+    <!-- ========== PROJECTS ==========
+         Duplicate a .card for more projects. Replace placeholders.
+    -->
+    <section id="projects">
+      <div class="title">
+        <h2>Projects</h2>
+        <p class="subtitle">A few representative pieces.</p>
+      </div>
+      <div class="grid cols-3">
+        <article class="card">
+          <div class="fake-img" aria-label="Project cover image placeholder">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9"/><path d="M3 10h18"/><path d="M7 22h10a2 2 0 0 0 2-2v-5H5v5a2 2 0 0 0 2 2Z"/></svg>
+          </div>
+          <div class="body">
+            <div class="meta"><b>Ops Playbook</b><span class="pill">System</span></div>
+            <p>Unified SOP + QA dashboard that reduced errors ~30% in 60 days.</p>
+            <div class="row">
+              <a class="btn" href="#" aria-label="View case study">Case Study</a>
+              <a class="btn ghost" href="#" aria-label="Live demo">Live</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="fake-img" aria-label="Project cover image placeholder">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M19 19 8 8l-5 5"/><path d="M14 14l-4-4"/></svg>
+          </div>
+          <div class="body">
+            <div class="meta"><b>Content Engine</b><span class="pill">Workflow</span></div>
+            <p>Brief → draft → review → publish. 3× output with consistent brand voice.</p>
+            <div class="row">
+              <a class="btn" href="#">Doc</a>
+              <a class="btn ghost" href="#">Samples</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="fake-img" aria-label="Project cover image placeholder">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2" ry="2"/><path d="m10 9 5 3-5 3z"/></svg>
+          </div>
+          <div class="body">
+            <div class="meta"><b>Mini‑Tools</b><span class="pill">Code</span></div>
+            <p>Small JS utilities (naming helper, cost calculator, checklist printer).</p>
+            <div class="row">
+              <a class="btn" href="#">Repo</a>
+              <a class="btn ghost" href="#">Demo</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ==========
+         Mailto form (no backend). Edit your email & WhatsApp.
+    -->
+    <section id="contact">
+      <div class="title">
+        <h2>Contact</h2>
+        <p class="subtitle">Short message, clear ask.</p>
+      </div>
+      <div class="grid cols-2">
+        <article class="card"><div class="body">
+          <h3>Message</h3>
+          <form id="mailForm">
+            <label>
+              <span class="muted">Your Name</span>
+              <input required name="name" type="text" placeholder="Jane" style="width:100%;padding:.7rem .9rem;border-radius:12px;border:1px solid color-mix(in oklab, var(--txt) 12%, transparent);background:var(--bg-soft);color:var(--txt);margin-top:6px"/>
+            </label>
+            <div style="height:10px"></div>
+            <label>
+              <span class="muted">Email</span>
+              <input required name="email" type="email" placeholder="jane@example.com" style="width:100%;padding:.7rem .9rem;border-radius:12px;border:1px solid color-mix(in oklab, var(--txt) 12%, transparent);background:var(--bg-soft);color:var(--txt);margin-top:6px"/>
+            </label>
+            <div style="height:10px"></div>
+            <label>
+              <span class="muted">Message</span>
+              <textarea required name="msg" rows="4" placeholder="What do you need?" style="width:100%;padding:.7rem .9rem;border-radius:12px;border:1px solid color-mix(in oklab, var(--txt) 12%, transparent);background:var(--bg-soft);color:var(--txt);margin-top:6px"></textarea>
+            </label>
+            <div class="row" style="margin-top:12px">
+              <button class="btn" type="submit">Send Email</button>
+              <a class="btn ghost" id="copyEmail" href="#">Copy Email</a>
+              <a class="btn ghost right" id="wa" href="https://wa.me/6280000000000" target="_blank" rel="noopener">WhatsApp</a>
+            </div>
+          </form>
+        </div></article>
+        <article class="card"><div class="body">
+          <h3>Details</h3>
+          <p class="muted">Prefer email for work requests. I reply within 24 hours on weekdays.</p>
+          <ul>
+            <li><b>Email:</b> <a id="mailto" href="mailto:astika327@gmail.com.com">astika327@gmail.com</a></li>
+            <li><b>Location:</b> Indonesia (remote friendly)</li>
+            <li><b>Timezone:</b> UTC+8</li>
+          </ul>
+          <div class="row">
+            <a class="btn" href="#" onclick="navigator.clipboard.writeText(location.href);return false;">Share Page</a>
+            <a class="btn" href="#resume">View Résumé</a>
+          </div>
+        </div></article>
+      </div>
+    </section>
+
+    <!-- ========== RÉSUMÉ (print-friendly) ==========
+         Keep it to 1 page when printed.
+    -->
+    <section id="resume">
+      <div class="title">
+        <h2>Résumé</h2>
+        <p class="subtitle">One page. Results only.</p>
+      </div>
+      <article class="card"><div class="body">
+        <div class="row" style="justify-content:space-between">
+          <div>
+            <h3 style="margin:0 0 .2em">Putu Astika</h3>
+            <div class="muted">Operator • Content • Lightweight Dev</div>
+          </div>
+          <div class="muted">astika327@gmail.com.com • +62‑82146178461</div>
+        </div>
+        <hr style="border:none;border-top:1px solid color-mix(in oklab, var(--txt) 12%, transparent); margin:14px 0">
+        <h4>Experience</h4>
+        <ul>
+          <li><b>Operations Lead</b> — Designed SOP/QA loops for multi‑site hospitality. Cut guest issues and shrinkage; improved reviews.</li>
+          <li><b>Content Manager</b> — Built content pipeline; 3× output at steady quality. Wrote high‑intent landing pages.</li>
+          <li><b>Generalist Builder</b> — Shipped single‑file sites, scripts, and calculators to remove busywork.</li>
+        </ul>
+        <h4>Selected Projects</h4>
+        <ul>
+          <li>Ops Playbook — unified checklists, incident log, and audit templates.</li>
+          <li>Content Engine — editorial calendar, briefs, review rubric, and brand kit.</li>
+          <li>Mini‑Tools — JS utilities for naming, cost/quote, and SOP printing.</li>
+        </ul>
+        <h4>Stack</h4>
+        <p>Notion, Google Suite, Figma/Canva, HTML/CSS/JS, Git, SEO basics.</p>
+      </div></article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footgrid">
+      <div>
+        <div class="row"><div class="logo" aria-hidden="true"></div><b>Putu Astika</b></div>
+        <p class="muted">© <span id="year"></span> — Built with hand‑written HTML/CSS/JS. Single file. Fast. Printable.</p>
+      </div>
+      <div class="row" style="justify-content:flex-end">
+        <a class="btn ghost" href="#">Top ↑</a>
+        <a class="btn" href="#contact">Hire Me</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ========== Theme persistence ==========
+    (function(){
+      const root = document.documentElement;
+      const pref = localStorage.getItem('theme');
+      if(pref){ root.setAttribute('data-theme', pref); }
+      const btn = document.getElementById('themeToggle');
+      btn?.addEventListener('click', ()=>{
+        const now = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', now); localStorage.setItem('theme', now);
+      });
+    })();
+
+    // ========== Stats / year ==========
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Adjust your starting year to compute years of experience quickly
+    const START_YEAR = 2020; // <- change this to your real start
+    document.getElementById('yearExp').textContent = Math.max(1, new Date().getFullYear() - START_YEAR);
+
+    // ========== Mailto form ==========
+    const mail = 'you@example.com'; // <- put your email here once
+    const form = document.getElementById('mailForm');
+    form?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const fd = new FormData(form);
+      const name = encodeURIComponent(fd.get('name'));
+      const email = encodeURIComponent(fd.get('email'));
+      const msg = encodeURIComponent(fd.get('msg'));
+      const subject = `Inquiry from ${decodeURIComponent(name)}`;
+      const body = `From: ${decodeURIComponent(name)} (%3C${decodeURIComponent(email)}%3E)%0D%0A%0D%0A${decodeURIComponent(msg)}`;
+      const href = `mailto:${mail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      location.href = href;
+    });
+    document.getElementById('copyEmail')?.addEventListener('click', (e)=>{e.preventDefault(); navigator.clipboard.writeText(mail)});
+
+    // ========== Print tweaks ==========
+    window.addEventListener('beforeprint',()=>document.querySelectorAll('a').forEach(a=>a.style.textDecoration='underline'));
+  </script>
+
+  <!-- ========== Structured Data ==========
+       Helps SEO; update with your info.
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Putu Astika",
+    "url": "https://example.com",
+    "jobTitle": "Operator / Content / Lightweight Dev",
+    "sameAs": []
+  }
+  </script>
+</body>
+</html>
