@@ -135,14 +135,16 @@
         <div class="logo" aria-hidden="true"></div>
         <span>Putu Astika</span>
       </div>
+      <!-- navbar -->
       <nav class="links" aria-label="Primary">
-        <a href="#about">About</a>
+        <a href="#about"><section id="about">About</section></a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
         <button class="btn ghost" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">☾/☼</button>
         <!-- <a class="btn" href="#resume" onclick="window.print();return false;">Download Resume</a> -->
          <a class="btn" href="assets/CV-uTuu.pdf" target="_blank">Download Resume</a>
+         <!-- navbar end -->
 
       </nav>
     </div>
@@ -164,7 +166,7 @@
         <div class="stats">
           <div class="stat"><b>10+ </b><div class="muted">projects shipped</div></div>
           <div class="stat"><b>3</b><div class="muted">core skill stacks</div></div>
-          <div class="stat"><b><span id="yearExp">5</span>y</b><div class="muted">experience</div></div>
+          <div class="stat"><b><span id="yearExp">1</span>m</b><div class="muted">experience</div></div>
         </div>
       <!-- </div>
       <div class="card rise" aria-label="Profile">
@@ -198,6 +200,7 @@
       <div class="title">
         <h2>About</h2>
         <p class="subtitle">Short, sharp, and verifiable.</p>
+        <p><b>Get rich or die tryin</b></p>
       </div>
       <div class="grid cols-2">
         <article class="card">
@@ -231,7 +234,7 @@
     <section id="skills">
       <div class="title">
         <h2>Skills</h2>
-        <p class="subtitle">T‑shaped: strong core, flexible edges.</p>
+        <p class="subtitle">Exploring and growing in digital world. Here are the main skills.</p>
       </div>
       <div class="grid cols-3">
         <article class="card"><div class="body">
@@ -263,7 +266,7 @@
     <!-- ========== PROJECTS ==========
          Duplicate a .card for more projects. Replace placeholders.
     -->
-    <section id="projects">
+    <!-- <section id="projects">
       <div class="title">
         <h2>Projects</h2>
         <p class="subtitle">A few representative pieces.</p>
@@ -311,17 +314,49 @@
           </div>
         </article>
       </div>
-    </section>
+    </section> -->
+     <section id="projects">
+  <div class="title">
+    <h2>Projects</h2>
+    <p class="subtitle">A few representative pieces.</p>
+  </div>
+
+  <div class="grid cols-3">
+
+    <!-- Project 1 -->
+    <article class="card">
+      <div class="body">
+        <div class="meta"><b>Simple Portfolio Website</b><span class="pill">HTML & CSS</span></div>
+        <p>Built a personal portfolio with responsive layout using only HTML and CSS basics.</p>
+        <div class="row">
+          <a class="btn" href="https://astika327-dev.github.io/promptcraft/" target="_blank">View Project</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="card">
+      <div class="body">
+        <div class="meta"><b>AI Chat Prompt Collection</b><span class="pill">AI & Writing</span></div>
+        <p>A curated set of prompts for productivity, trading, and learning—organized in a clean document.</p>
+        <div class="row">
+          <a class="btn disabled" href="#">Download Soon</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
 
     <!-- ========== CONTACT ==========
          Mailto form (no backend). Edit your email & WhatsApp.
     -->
-    <section id="contact">
+    <!-- <section id="contact">
       <div class="title">
         <h2>Contact</h2>
         <p class="subtitle">Short message, clear ask.</p>
       </div>
-      <div class="grid cols-2">
+      <div class="grid <cols-2">
         <article class="card"><div class="body">
           <h3>Message</h3>
           <form id="mailForm">
@@ -361,7 +396,114 @@
         </div></article>
       </div>
     </section>
+    ...
+<section id="contact">
+  <!-- ============ CONTACT ============ -->
+<section id="contact" class="wrap">
+  <div class="title">
+    <h2>Contact</h2>
+    <p class="subtitle">Short message, clear ask.</p>
+  </div>
 
+  <div class="grid cols-2">
+    <article class="card">
+      <div class="body">
+        <h3>Message</h3>
+        <form id="mailForm" novalidate>
+          <label>
+            <span class="muted">Your Name</span>
+            <input required name="name" type="text" placeholder="Jane"
+                   style="width:100%;padding:.7rem .9rem;border-radius:12px;border:1px solid color-mix(in oklab, var(--txt) 12%, transparent);background:var(--bg-soft);color:var(--txt);margin-top:6px;">
+          </label>
+
+          <div style="height:10px"></div>
+
+          <label>
+            <span class="muted">Email</span>
+            <input required name="email" type="email" placeholder="jane@example.com"
+                   style="width:100%;padding:.7rem .9rem;border-radius:12px;border:1px solid color-mix(in oklab, var(--txt) 12%, transparent);background:var(--bg-soft);color:var(--txt);margin-top:6px;">
+          </label>
+
+          <div style="height:10px"></div>
+
+          <label>
+            <span class="muted">Message</span>
+            <textarea required name="msg" rows="4" placeholder="What do you need?"
+                      style="width:100%;padding:.7rem .9rem;border-radius:12px;border:1px solid color-mix(in oklab, var(--txt) 12%, transparent);background:var(--bg-soft);color:var(--txt);margin-top:6px;"></textarea>
+          </label>
+
+          <div class="row" style="margin-top:12px">
+            <button class="btn" id="sendEmail" type="submit">Send Email</button>
+            <a class="btn ghost" id="copyEmail" href="#">Copy Email</a>
+            <a class="btn ghost right" id="wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </form>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="body">
+        <h3>Details</h3>
+        <p class="muted" style="margin:.5rem 0 0">
+          Prefer short introductions. I usually reply within 24 hours.
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
+<script>
+  // --- EDIT PUNYA KAMU ---
+  const OWNER_EMAIL = "astika327@gmail.com";
+  const WA_NUMBER   = "6282146178461";
+
+  // elemen (deklarasi SEKALI saja)
+  const form    = document.getElementById("mailForm");
+  const copyBtn = document.getElementById("copyEmail");
+  const waLink  = document.getElementById("wa");
+
+  function getPayload() {
+    const name  = form.elements["name"]?.value?.trim()  || "";
+    const email = form.elements["email"]?.value?.trim() || "";
+    const msg   = form.elements["msg"]?.value?.trim()   || "";
+    return { name, email, msg };
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const { name, email, msg } = getPayload();
+    const subject = encodeURIComponent(`Hello from ${name}`);
+    const body    = encodeURIComponent(`${msg}\n\nFrom: ${name} <${email}>`);
+    window.location.href = `mailto:${OWNER_EMAIL}?subject=${subject}&body=${body}`;
+  });
+
+  copyBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    try {
+      await navigator.clipboard.writeText(OWNER_EMAIL);
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => (copyBtn.textContent = "Copy Email"), 1500);
+    } catch {
+      alert("Clipboard blocked. Copy manually: " + OWNER_EMAIL);
+    }
+  });
+
+  waLink.addEventListener("click", (e) => {
+    const { msg } = getPayload();
+    if (!msg) {
+      e.preventDefault();
+      alert("Please write a short message first.");
+    } else {
+      const text = encodeURIComponent(msg);
+      waLink.href = `https://wa.me/${WA_NUMBER}?text=${text}`;
+      waLink.target = "_blank";
+      waLink.rel = "noopener";
+    }
+  });
+</script>
+
+
+
+  
     <!-- ========== RÉSUMÉ (print-friendly) ==========
          Keep it to 1 page when printed.
     -->
@@ -431,7 +573,7 @@
 
     // ========== Mailto form ==========
     const mail = 'you@example.com'; // <- put your email here once
-    const form = document.getElementById('mailForm');
+    // const form = document.getElementById('mailForm');
     form?.addEventListener('submit', (e)=>{
       e.preventDefault();
       const fd = new FormData(form);
