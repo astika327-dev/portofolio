@@ -57,7 +57,7 @@
     header{position:sticky; top:0; z-index:50; backdrop-filter: blur(10px); background: color-mix(in oklab, var(--bg), transparent 35%); border-bottom:1px solid color-mix(in oklab, var(--txt) 8%, transparent);}
     .nav{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0}
     .brand{display:flex; align-items:center; gap:12px; font-weight:700}
-    .logo{width:36px; height:36px; border-radius:10px; background: conic-gradient(from 210deg, var(--brand), var(--brand-2), var(--brand)); box-shadow: var(--shadow-soft)}
+    .logo img{width:32px; height:32px; border-radius:10px; background: conic-gradient(from 210deg, var(--brand), var(--brand-2), var(--brand)); box-shadow: var(--shadow-soft)}
     .nav a{color:var(--txt); opacity:.85}
     .nav a:hover{opacity:1}
     .links{display:flex; gap: clamp(10px, 2vw, 20px); align-items:center}
@@ -132,7 +132,11 @@
   <header>
     <div class="wrap nav">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+        <!-- <div class="logo" aria-hidden="true"></div> -->
+         <div class="logo">
+  <img src="assets/profile.png" alt="Putu Astika Logo">
+</div>
+
         <span>Putu Astika</span>
       </div>
       <!-- navbar -->
@@ -553,7 +557,12 @@
   <footer>
     <div class="wrap footgrid">
       <div>
-        <div class="row"><div class="logo" aria-hidden="true"></div><b>Putu Astika</b></div>
+        <!-- <div class="row"><div class="logo"></div><b>Putu Astika</b></div> -->
+         <div class="logo">
+         <img src="assets/profile.png" alt="Putu Astika Logo">         
+         <b>Putu Astika</b>
+</div>
+
         <p class="muted">© <span id="year"></span> — Built with hand‑written HTML/CSS/JS. Single file. Fast. Printable.</p>
       </div>
       <div class="row" style="justify-content:flex-end">
@@ -615,5 +624,26 @@
     "sameAs": []
   }
   </script>
+  <script>
+  const shareBtn = document.getElementById("shareBtn");
+
+  shareBtn.addEventListener("click", async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Putu Astika – Portofolio",
+          text: "Check out my portfolio website!",
+          url: window.location.href   // otomatis ambil URL halaman ini
+        });
+        console.log("Page shared successfully");
+      } catch (err) {
+        console.log("Error sharing:", err);
+      }
+    } else {
+      alert("Sharing not supported on this browser. Copy link instead!");
+    }
+  });
+</script>
+
 </body>
 </html>
