@@ -4,573 +4,308 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Putu Astika — Portfolio</title>
-  <meta name="description" content="Compact, fast, single‑file portfolio for showcasing skills, projects, and services." />
-  <meta name="color-scheme" content="dark light">
-  <meta property="og:title" content="uTuu — Portfolio" />
-  <meta property="og:description" content="Skills, projects, and contact in one lightweight page." />
+  <meta name="description" content="Operator-minded web dev. Clean systems, lean content, and lightweight code." />
+  <meta name="author" content="Putu Astika" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Putu Astika — Portfolio" />
+  <meta property="og:description" content="Operator • Content • Lightweight Dev" />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#0ea5e9" />
-  <style>
-    /* ========== Design Tokens & Theme ==========
-       Switch theme by toggling [data-theme="light"|"dark"] on <html>
-    */
-    :root {
-      --bg: #0b0e13;         /* surfaces */
-      --bg-soft: #0f141b;    /* cards */
-      --txt: #e6ebf2;        /* primary text */
-      --muted: #aab3c0;      /* secondary text */
-      --brand: #0ea5e9;      /* accent */
-      --brand-2: #22d3ee;    /* accent 2 */
-      --ok: #22c55e;         /* success */
-      --warn: #f59e0b;       /* warning */
-      --err: #ef4444;        /* error */
-      --ring: 0 0 0 2px color-mix(in oklab, var(--brand) 60%, transparent);
-      --radius: 18px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --shadow-soft: 0 8px 18px rgba(0,0,0,.25);
-      --maxw: 1200px;
-      --grid-gap: clamp(14px, 2vw, 22px);
-      --pad: clamp(18px, 2.5vw, 28px);
-    }
-    html[data-theme="light"]{
-      --bg: #f7f7fb;
-      --bg-soft: #ffffff;
-      --txt: #0a0c10;
-      --muted: #4b5563;
-      --brand: #2563eb;
-      --brand-2: #06b6d4;
-      --shadow: 0 10px 30px rgba(2,6,23,.08);
-      --shadow-soft: 0 8px 18px rgba(2,6,23,.06);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      color:var(--txt); background: radial-gradient(1200px 600px at 70% -10%, color-mix(in oklab, var(--brand), transparent 84%), transparent 60%), var(--bg);
-      letter-spacing:.2px; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    }
-    a{color:var(--brand); text-decoration:none}
-    a:hover{text-decoration:underline}
+  <meta property="og:url" content="https://astika327-dev.github.io/portofolio/" />
+  <meta property="og:image" content="https://astika327-dev.github.io/portofolio/assets/img/cover.png" />
 
-    /* Layout */
-    .wrap{max-width:var(--maxw); margin:0 auto; padding-inline: clamp(14px, 3vw, 36px)}
-    header{position:sticky; top:0; z-index:50; backdrop-filter: blur(10px); background: color-mix(in oklab, var(--bg), transparent 35%); border-bottom:1px solid color-mix(in oklab, var(--txt) 8%, transparent);}
-    .nav{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0}
-    .brand{display:flex; align-items:center; gap:12px; font-weight:700}
-    .logo img{width:32px; height:32px; border-radius:10px; background: conic-gradient(from 210deg, var(--brand), var(--brand-2), var(--brand)); box-shadow: var(--shadow-soft)}
-    .nav a{color:var(--txt); opacity:.85}
-    .nav a:hover{opacity:1}
-    .links{display:flex; gap: clamp(10px, 2vw, 20px); align-items:center}
-    .btn{display:inline-flex; align-items:center; gap:8px; padding:.55rem .9rem; border-radius:12px; background:linear-gradient(180deg, color-mix(in oklab, var(--bg-soft), white 3%), color-mix(in oklab, var(--bg-soft), black 5%)); border:1px solid color-mix(in oklab, var(--txt) 10%, transparent); color:var(--txt); box-shadow: var(--shadow-soft); cursor:pointer}
-    .btn:hover{filter:brightness(1.04)}
-    .btn:active{transform:translateY(1px)}
-
-    /* Hero */
-    .hero{display:grid; grid-template-columns: 1.1fr .9fr; gap: var(--grid-gap); align-items:center; padding: min(9vh, 80px) 0}
-    .kicker{display:inline-grid; grid-auto-flow:column; gap:10px; align-items:center; font-size:.9rem; color:var(--muted)}
-    .badge{padding:.25rem .6rem; border-radius:999px; border:1px solid color-mix(in oklab, var(--txt) 12%, transparent); background: color-mix(in oklab, var(--bg-soft), black 2%)}
-    h1{font-size:clamp(30px, 4.5vw, 54px); line-height:1.1; margin:.35em 0 .2em}
-    .lead{font-size: clamp(1rem, 1.4vw, 1.15rem); color:var(--muted); max-width: 64ch}
-    .cta{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap}
-    .stats{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--grid-gap); margin-top:clamp(18px, 3vw, 28px)}
-    .stat{border:1px solid color-mix(in oklab, var(--txt) 10%, transparent); background:linear-gradient(180deg, color-mix(in oklab, var(--bg-soft), white 1%), color-mix(in oklab, var(--bg-soft), black 4%)); border-radius: var(--radius); padding:var(--pad); text-align:center}
-    .stat b{font-size:clamp(22px, 3vw, 34px)}
-
-    /* Sections */
-    section{padding: clamp(36px, 7vw, 80px) 0; scroll-margin-top: 90px}
-    .title{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom: clamp(18px, 2.5vw, 28px)}
-    .title h2{font-size: clamp(22px, 2.8vw, 32px); margin:0}
-    .subtitle{color:var(--muted); font-size:.95rem}
-
-    /* Cards & Grids */
-    .grid{display:grid; gap: var(--grid-gap)}
-    .grid.cols-3{grid-template-columns: repeat(3, minmax(0,1fr))}
-    .grid.cols-2{grid-template-columns: repeat(2, minmax(0,1fr))}
-    @media (max-width: 900px){
-      .hero{grid-template-columns: 1fr}
-      .grid.cols-3{grid-template-columns: 1fr 1fr}
-    }
-    @media (max-width: 640px){
-      .grid.cols-3, .grid.cols-2{grid-template-columns: 1fr}
-    }
-    .card{border:1px solid color-mix(in oklab, var(--txt) 10%, transparent); background:linear-gradient(180deg, color-mix(in oklab, var(--bg-soft), white 1%), color-mix(in oklab, var(--bg-soft), black 5%)); border-radius: var(--radius); overflow:hidden; box-shadow: var(--shadow)}
-    .card .body{padding: var(--pad)}
-    .meta{display:flex; gap:10px; align-items:center; color:var(--muted); font-size:.9rem}
-    .pill{padding:.25rem .6rem; border-radius:999px; border:1px solid color-mix(in oklab, var(--txt) 10%, transparent)}
-
-    .fake-img{aspect-ratio: 16/10; background: linear-gradient(135deg, color-mix(in oklab, var(--brand) 12%, transparent), color-mix(in oklab, var(--brand-2) 12%, transparent)); display:grid; place-items:center}
-    .fake-img svg{opacity:.8}
-
-    /* Skills */
-    .skillbar{height: 10px; background: color-mix(in oklab, var(--txt) 8%, transparent); border-radius: 999px; overflow:hidden}
-    .skillbar > i{display:block; height:100%; width: var(--val, 60%); background: linear-gradient(90deg, var(--brand), var(--brand-2))}
-
-    /* Footer */
-    footer{padding: 40px 0; border-top:1px solid color-mix(in oklab, var(--txt) 8%, transparent); color:var(--muted)}
-    .footgrid{display:grid; gap: var(--grid-gap); grid-template-columns: 1.2fr .8fr}
-    @media (max-width:800px){.footgrid{grid-template-columns:1fr}}
-
-    /* Utilities */
-    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
-    .muted{color:var(--muted)}
-    .row{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
-    .chip{border:1px solid color-mix(in oklab, var(--txt) 10%, transparent); border-radius:999px; padding:.4rem .7rem}
-    .ghost{background:transparent}
-    .right{margin-left:auto}
-
-    /* Animations (respect reduced motion) */
-    @media (prefers-reduced-motion: no-preference){
-      .rise{animation: rise .6s ease both}
-      @keyframes rise{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
-      .fadein{animation: fadein .7s ease both}
-      @keyframes fadein{from{opacity:0} to{opacity:1}}
-    }
-  </style>
+  <!-- Favicon (inline, aman tanpa file) -->
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect rx="12" width="64" height="64" fill="%230b1220"/><path d="M36 6 12 36h14l-4 22 30-38H38l-2-14z" fill="%231fb6ff"/></svg>'>
+  <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body>
   <a class="sr-only" href="#main">Skip to content</a>
-  <header>
-    <div class="wrap nav">
-      <div class="brand">
-        <!-- <div class="logo" aria-hidden="true"></div> -->
-         <div class="logo">
-  <img src="assets/profile.png" alt="Putu Astika Logo">
-</div>
 
-        <span>Putu Astika</span>
-      </div>
-      <!-- navbar -->
-      <nav class="links" aria-label="Primary">
-        <a href="#about"><section id="about">About</section></a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-        <button class="btn ghost" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">☾/☼</button>
-        <!-- <a class="btn" href="#resume" onclick="window.print();return false;">Download Resume</a> -->
-         <a class="btn" href="assets/Putu-Astika-Resume.pdf" target="_blank">Download Resume</a>
-         <!-- navbar end -->
-
-      </nav>
-    </div>
+  <!-- Header -->
+  <header class="wrap header">
+    <a class="brand" href="#top" aria-label="Home">
+       <img src="assets/profile.png" alt="Putu Astika" class="logo" />
+      <span class="brand-name">Putu Astika</span>
+    </a>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="#resume">Resume</a>
+      <button id="themeToggle" class="btn ghost" aria-label="Toggle theme">🌗</button>
+    </nav>
   </header>
 
-  <main id="main" class="wrap">
-    <!-- ========== HERO ==========
-         Replace text below with your elevator pitch.
-    -->
-    <section class="hero">
-      <div>
-        <span class="kicker fadein"><span class="badge">Available for work</span> <span>Based Bali</span></span>
-        <h1 class="rise">Builder, Operator, Problem‑solver.</h1>
-        <p class="lead">I turn messy problems into clean systems—across operations, content, and lightweight code. Fast learner, bias to action, and allergic to fluff.</p>
-        <div class="cta">
-          <a class="btn" href="#projects">See Projects</a>
-          <a class="btn ghost" href="#contact">Get in Touch</a>
-        </div>
-        <div class="stats">
-          <div class="stat"><b>2 </b><div class="muted">projects shipped</div></div>
-          <div class="stat"><b>3</b><div class="muted">core skill stacks</div></div>
-          <div class="stat"><b><span id="montExp">1</span>m</b><div class="muted">experience</div></div>
-        </div>
-           <div class="card rise" aria-label="Profile">
-  <img src="assets/profile.png" alt="Foto uTuu" class="fake-img" 
-       style="object-fit:cover; width:120px; height:120px; border-radius:50%;">
-
-        </div>
-        <div class="body">
-          <h3 style="margin:.2em 0 0">Putu Astika</h3>
-          <p class="muted" style="margin:.3em 0 1em">Operator • Content • Lightweight Dev</p>
-          <div class="row">
-            <span class="chip">Ops Systems</span>
-            <span class="chip">Content & Branding</span>
-            <span class="chip">No‑Code & JS</span>
-          </div>
-        </div>
+  <!-- Hero -->
+  <section id="top" class="hero">
+    <div class="wrap hero-inner">
+      <div class="badges">
+        <span class="pill">Available for work</span>
+        <span class="pill">Bali · UTC+8</span>
       </div>
-    </section>
+      <h1 class="title">Builder, Operator,<br> Problem-solver.</h1>
+      <p class="lede">
+        I turn messy problems into clean systems—across operations, content, and lightweight code.
+        Fast learner, bias to action, allergic to fluff.
+      </p>
+      <div class="row">
+        <a class="btn" href="#projects">See Projects</a>
+        <a class="btn ghost" href="#contact">Get in Touch</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- ========== ABOUT ==========
-         Add a concise narrative and proof of work.
-    -->
-    <section id="about">
+  <main id="main" class="wrap">
+
+    <!-- About -->
+    <section id="about" class="section">
       <div class="title">
         <h2>About</h2>
         <p class="subtitle">Short, sharp, and verifiable.</p>
       </div>
+
       <div class="grid cols-2">
         <article class="card">
           <div class="body">
-            <h3>Principles</h3>
-            <p>Think clearly. Move fast. Be useful. I design lean operational systems, ship content that converts, and build tiny tools when needed.</p>
-            <ul>
-              <li>Outcome > optics. I cut waste, automate, and standardize.</li>
-              <li>Write to think. Docs, checklists, and templates are default.</li>
-              <li>Bias to action. Iterate in public, measure, refine.</li>
+            <p>
+              Ops-first generalist with a content background who builds small, durable web tools.
+              I optimize workflows, document knowledge, and ship pragmatic features—preferably with
+              simple tech that’s easy to maintain.
+            </p>
+            <ul class="check">
+              <li>Ships fast with clear acceptance criteria</li>
+              <li>Prefers simplicity over ceremony</li>
+              <li>Writes docs and checklists people actually use</li>
             </ul>
           </div>
         </article>
+
         <article class="card">
           <div class="body">
-            <h3>Selected Highlights</h3>
-            <ul>
-              <li>Stabilized ops across 2 properties with SOPs & QA loops.</li>
-              <li>Built content pipeline (brief → draft → publish) raising output 3×.</li>
-              <li>Coded small JS utilities to automate repetitive admin.</li>
+            <h3>Focus</h3>
+            <ul class="bullets">
+              <li>Lean web: semantic HTML, modern CSS, a pinch of JS</li>
+              <li>AI as power tool: prompt systems, review & QA</li>
+              <li>Ops systems: SOPs, incident notes, audit trails</li>
             </ul>
-            <p class="muted">Evidence available on request.</p>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- ========== SKILLS ==========
-         Adjust values via style="--val: NN%"
-    -->
-    <section id="skills">
+    <!-- Skills -->
+    <section id="skills" class="section">
       <div class="title">
         <h2>Skills</h2>
-        <p class="subtitle">Exploring and growing in digital world. Here are the main skills.</p>
+        <p class="subtitle">Solid fundamentals + responsible AI.</p>
       </div>
-      <div class="grid cols-3">
+
+      <div class="grid cols-4">
         <article class="card"><div class="body">
-          <div class="meta"><b>Operations</b><span class="pill">SOP • QA • CX</span></div>
-          <p class="muted">System design, checklists, metrics, and training.</p>
-          <div class="skillbar" aria-label="Operations skill"><i style="--val:88%"></i></div>
+          <h3>Web</h3>
+          <ul class="bullets">
+            <li>HTML (semantic), CSS (Flex/Grid, variables)</li>
+            <li>Basic JS (DOM, fetch, modules)</li>
+            <li>Git & GitHub Pages</li>
+            <li>SEO basics, a11y awareness</li>
+          </ul>
         </div></article>
+
         <article class="card"><div class="body">
-          <div class="meta"><b>Content</b><span class="pill">Copy • Brand</span></div>
-          <p class="muted">Landing pages, social, blog ops, and simple design.</p>
-          <div class="skillbar" aria-label="Content skill"><i style="--val:82%"></i></div>
+          <h3>AI</h3>
+          <ul class="bullets">
+            <li>Prompt design & libraries</li>
+            <li>Evaluation loops & red-teaming</li>
+            <li>Grounding & fact-checking discipline</li>
+            <li>Workflow automation ideas</li>
+          </ul>
         </div></article>
+
         <article class="card"><div class="body">
-          <div class="meta"><b>Dev (Light)</b><span class="pill">HTML • CSS • JS</span></div>
-          <p class="muted">Single‑file sites, automations, and small tools.</p>
-          <div class="skillbar" aria-label="Dev skill"><i style="--val:70%"></i></div>
+          <h3>Tools</h3>
+          <ul class="bullets">
+            <li>Figma/Canva, Google Suite</li>
+            <li>Markdown, JSON/YAML</li>
+            <li>Notion for ops systems</li>
+            <li>Chrome DevTools, VS Code</li>
+          </ul>
         </div></article>
-      </div>
-      <div class="row" style="margin-top:12px">
-        <span class="chip">Figma</span>
-        <!-- <span class="chip">Canva</span> -->
-        <span class="chip">Notion</span>
-        <span class="chip">VS Code</span>
-        <span class="chip">Git</span>
-        <span class="chip">SEO Basics</span>
+
+        <article class="card"><div class="body">
+          <h3>Soft</h3>
+          <ul class="bullets">
+            <li>Critical thinking, clarity</li>
+            <li>Bias to action</li>
+            <li>Calm under pressure</li>
+            <li>Ownership & follow-through</li>
+          </ul>
+        </div></article>
       </div>
     </section>
-    <!-- Project 1 -->
-    <article class="card">
-      <div class="body">
-        <div class="meta"><b>Simple Portfolio Website</b><span class="pill">HTML & CSS</span></div>
-        <p>Built a personal portfolio with responsive layout using only HTML and CSS basics.</p>
-        <div class="row">
-          <a class="btn" href="https://astika327-dev.github.io/promptcraft/" target="_blank">View Project</a>
-        </div>
-      </div>
-    </article>
 
-    <!-- Project 2 -->
-    <article class="card">
-      <div class="body">
-        <div class="meta"><b>AI Chat Prompt Collection</b><span class="pill">AI & Writing</span></div>
-        <p>A curated set of prompts for productivity, trading, and learning—organized in a clean document.</p>
-        <div class="row">
-          <a class="btn disabled" href="#">Download Soon</a>
-        </div>
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <div class="title">
+        <h2>Projects</h2>
+        <p class="subtitle">Representative pieces.</p>
       </div>
-    </article>
 
-  </div>
-</section>
+      <div class="grid cols-3">
+        <!-- Project 1 -->
+        <article class="card project">
+          <div class="cover" aria-label="PromptCraft preview">
+             <img class="project-img" src="assets/pcimage.png" alt="PromptCraft preview" loading="lazy">
+          </div>
+          <div class="body">
+            <div class="meta">
+              <b>PromptCraft</b> <span class="pill">AI & Writing</span>
+            </div>
+            <p>Prompt builder with reusable patterns and an audit-friendly preview.</p>
+            <div class="row">
+              <a class="btn" href="https://astika327-dev.github.io/promptcraft/" target="_blank" rel="noopener">Live</a>
+              <a class="btn ghost" href="https://github.com/astika327-dev/promptcraft" target="_blank" rel="noopener">Source</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="card project">
+          <div class="cover">
+            <img src="assets/img/ops-playbook.svg" alt="" loading="lazy">
+          </div>
+          <div class="body">
+            <div class="meta">
+              <b>Ops Playbook</b> <span class="pill">Systems</span>
+            </div>
+            <p>Unified SOP/QA kit: checklists, incident notes, and audit templates.</p>
+            <div class="row">
+              <a class="btn ghost" aria-disabled="true" href="#">Case study soon</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="card project">
+          <div class="cover">
+            <img src="assets/img/mini-tools.svg" alt="" loading="lazy">
+          </div>
+          <div class="body">
+            <div class="meta">
+              <b>Mini-Tools</b> <span class="pill">Web Utils</span>
+            </div>
+            <p>Small JS utilities: quote calculator, SOP printer, and name helper.</p>
+            <div class="row">
+              <a class="btn ghost" aria-disabled="true" href="#">Demos soon</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="title">
+        <h2>Contact</h2>
+        <p class="subtitle">Short message, clear ask.</p>
+      </div>
+
+      <div class="grid cols-2">
+        <article class="card"><div class="body">
+          <h3>Message</h3>
+          <form id="mailForm" novalidate>
+            <label>
+              <span class="muted">Your Name</span>
+              <input name="name" type="text" placeholder="Your name" required>
+            </label>
             <label>
               <span class="muted">Email</span>
-              <input required name="email" type="email" placeholder="jane@example.com" style="width:100%;padding:.7rem .9rem;border-radius:12px;border:1px solid color-mix(in oklab, var(--txt) 12%, transparent);background:var(--bg-soft);color:var(--txt);margin-top:6px"/>
+              <input name="email" type="email" placeholder="you@example.com" required>
             </label>
-            <div style="height:10px"></div>
             <label>
               <span class="muted">Message</span>
-              <textarea required name="msg" rows="4" placeholder="What do you need?" style="width:100%;padding:.7rem .9rem;border-radius:12px;border:1px solid color-mix(in oklab, var(--txt) 12%, transparent);background:var(--bg-soft);color:var(--txt);margin-top:6px"></textarea>
+              <textarea name="msg" rows="4" placeholder="What do you need?" required></textarea>
             </label>
-            <div class="row" style="margin-top:12px">
+            <div class="actions">
               <button class="btn" type="submit">Send Email</button>
-              <a class="btn ghost" id="copyEmail" href="#">Copy Email</a>
-              <a class="btn ghost right" id="wa" href="https://wa.me/6282146178461" target="_blank" rel="noopener">WhatsApp</a>
+              <a id="copyEmail" class="btn ghost" href="#">Copy Email</a>
+              <a id="wa" class="btn ghost" href="#" target="_blank" rel="noopener">WhatsApp</a>
+              <a class="btn ghost" href="#resume">View Résumé</a>
+              <!-- Download Résumé (langsung unduh) -->
+              <a id="dlResume" class="btn" href="assets/Putu-Astika-Resume.pdf" download>Download Résumé</a>
+              <button id="printBtn" class="btn ghost" type="button">Print Page</button>
+              <button id="shareBtn" class="btn ghost" type="button">Share Page</button>
             </div>
           </form>
         </div></article>
+
         <article class="card"><div class="body">
           <h3>Details</h3>
-          <p class="muted">Prefer email for work requests. I reply within 24 hours on weekdays.</p>
-          <ul>
-            <li><b>Email:</b> <a id="mailto" href="mailto:astika327@gmail.com.com">astika327@gmail.com</a></li>
-            <li><b>Location:</b> Indonesia (remote friendly)</li>
+          <ul class="bullets">
+            <li><b>Email:</b> <a id="ownerEmail" href="mailto:astika327@gmail.com">astika327@gmail.com</a></li>
+            <li><b>Location:</b> Denpasar, Bali (remote-friendly)</li>
             <li><b>Timezone:</b> UTC+8</li>
           </ul>
-          <div class="row">
-            <a class="btn" href="#" onclick="navigator.clipboard.writeText(location.href);return false;">Share Page</a>
-            <a class="btn" href="#resume">View Résumé</a>
-          </div>
         </div></article>
       </div>
     </section>
-    ...
-<section id="contact">
-  <!-- ============ CONTACT ============ -->
-<section id="contact" class="wrap">
-  <div class="title">
-    <h2>Contact</h2>
-    <p class="subtitle">Short message, clear ask.</p>
-  </div>
 
-  <div class="grid cols-2">
-    <article class="card">
-      <div class="body">
-        <h3>Message</h3>
-        <form id="mailForm" novalidate>
-          <label>
-            <span class="muted">Your Name</span>
-            <input required name="name" type="text" placeholder="Jane"
-                   style="width:100%;padding:.7rem .9rem;border-radius:12px;border:1px solid color-mix(in oklab, var(--txt) 12%, transparent);background:var(--bg-soft);color:var(--txt);margin-top:6px;">
-          </label>
-
-          <div style="height:10px"></div>
-
-          <label>
-            <span class="muted">Email</span>
-            <input required name="email" type="email" placeholder="jane@example.com"
-                   style="width:100%;padding:.7rem .9rem;border-radius:12px;border:1px solid color-mix(in oklab, var(--txt) 12%, transparent);background:var(--bg-soft);color:var(--txt);margin-top:6px;">
-          </label>
-
-          <div style="height:10px"></div>
-
-          <label>
-            <span class="muted">Message</span>
-            <textarea required name="msg" rows="4" placeholder="What do you need?"
-                      style="width:100%;padding:.7rem .9rem;border-radius:12px;border:1px solid color-mix(in oklab, var(--txt) 12%, transparent);background:var(--bg-soft);color:var(--txt);margin-top:6px;"></textarea>
-          </label>
-
-          <div class="row" style="margin-top:12px">
-            <button class="btn" id="sendEmail" type="submit">Send Email</button>
-            <a class="btn ghost" id="copyEmail" href="#">Copy Email</a>
-            <a class="btn ghost right" id="wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
-          </div>
-        </form>
+    <!-- Résumé (print-friendly & web summary) -->
+    <section id="resume" class="section print-only">
+      <div class="title">
+        <h2>Resume</h2>
+        <p class="subtitle">One page. Results only.</p>
       </div>
-    </article>
 
-    <article class="card">
-      <div class="body">
-        <h3>Details</h3>
-        <p class="muted" style="margin:.5rem 0 0">
-          Prefer short introductions. I usually reply within 24 hours.
-        </p>
+      <div class="grid cols-2">
+        <article class="card"><div class="body">
+          <h3>Summary</h3>
+          <ul class="bullets">
+            <li>Junior Web Developer (HTML, CSS, basic JS)</li>
+            <li>Responsible AI user (prompt design, review loops)</li>
+            <li>Ops background with strong problem-solving</li>
+          </ul>
+
+          <h3 style="margin-top:1.1rem">Skills</h3>
+          <ul class="bullets">
+            <li><b>Web:</b> HTML, CSS, basic JS, Git, SEO fundamentals</li>
+            <li><b>AI:</b> Prompt systems, grounding, fact-checking</li>
+            <li><b>Tools:</b> Figma/Canva, Google Suite, Notion</li>
+            <li><b>Soft:</b> Clarity, efficiency, ownership</li>
+          </ul>
+        </div></article>
+
+        <article class="card"><div class="body">
+          <h3>Experience Highlights</h3>
+          <ul class="bullets">
+            <li>Built responsive portfolio (hand-written HTML/CSS/JS)</li>
+            <li>Designed AI prompts & workflows that speed up writing</li>
+            <li>Improved ops with SOPs, checklists, and JS utilities</li>
+          </ul>
+
+          <h3 style="margin-top:1.1rem">Selected Projects</h3>
+          <ul class="bullets">
+            <li>PromptCraft — reusable prompt patterns & preview</li>
+            <li>Ops Playbook — incident log & audit templates</li>
+            <li>Mini-Tools — calculators & SOP printer</li>
+          </ul>
+        </div></article>
       </div>
-    </article>
-  </div>
-</section>
-<script>
-  // --- EDIT PUNYA KAMU ---
-  const OWNER_EMAIL = "astika327@gmail.com";
-  const WA_NUMBER   = "6282146178461";
-
-  // elemen (deklarasi SEKALI saja)
-  const form    = document.getElementById("mailForm");
-  const copyBtn = document.getElementById("copyEmail");
-  const waLink  = document.getElementById("wa");
-
-  function getPayload() {
-    const name  = form.elements["name"]?.value?.trim()  || "";
-    const email = form.elements["email"]?.value?.trim() || "";
-    const msg   = form.elements["msg"]?.value?.trim()   || "";
-    return { name, email, msg };
-  }
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const { name, email, msg } = getPayload();
-    const subject = encodeURIComponent(`Hello from ${name}`);
-    const body    = encodeURIComponent(`${msg}\n\nFrom: ${name} <${email}>`);
-    window.location.href = `mailto:${OWNER_EMAIL}?subject=${subject}&body=${body}`;
-  });
-
-  copyBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
-    try {
-      await navigator.clipboard.writeText(OWNER_EMAIL);
-      copyBtn.textContent = "Copied!";
-      setTimeout(() => (copyBtn.textContent = "Copy Email"), 1500);
-    } catch {
-      alert("Clipboard blocked. Copy manually: " + OWNER_EMAIL);
-    }
-  });
-
-  waLink.addEventListener("click", (e) => {
-    const { msg } = getPayload();
-    if (!msg) {
-      e.preventDefault();
-      alert("Please write a short message first.");
-    } else {
-      const text = encodeURIComponent(msg);
-      waLink.href = `https://wa.me/${6282146178461}?text=${text}`;
-      waLink.target = "_blank";
-      waLink.rel = "noopener";
-    }
-  });
-</script>
-
-
-
-  
-    <!-- ========== RÉSUMÉ (print-friendly) ==========
-         Keep it to 1 page when printed.
-    -->
-    <!-- Summary -->
-    <section id="resume" style="margin-top: clamp(36px, 7vw, 80px)">
-
-  <!-- <div class="title">  -->
-    <article class="card">
-      <div class="body">
-        <h3>Summary</h3>
-        <ul style="margin:.5rem 0 0 1rem">
-          <li>Junior Web Developer (HTML, CSS, basic JS)</li>
-          <li>AI-assisted problem solver</li>
-          <li>Ops background with strong critical thinking</li>
-        </ul>
-      </div>
-    </article>
-
-    <!-- Skills -->
-    <article class="card">
-      <div class="body">
-        <h3>Skills</h3>
-        <ul style="margin:.5rem 0 0 1rem">
-          <li><b>Web:</b> HTML, CSS, basic JS, Git, SEO fundamentals</li>
-          <li><b>Tools:</b> Figma/Canva, Google Suite</li>
-          <li><b>AI:</b> Prompt design & productivity automation</li>
-          <li><b>Soft:</b> Critical thinking, efficiency, adaptability</li>
-        </ul>
-      </div>
-    </article>
-
-    <!-- Experience Highlights -->
-    <article class="card">
-      <div class="body">
-        <h3>Experience Highlights</h3>
-        <ul style="margin:.5rem 0 0 1rem">
-          <li>Built responsive personal portfolio (HTML/CSS)</li>
-          <li>Designed AI prompts & workflows that speed up writing</li>
-          <li>Improved ops with checklists, SOPs, and simple JS tools</li>
-        </ul>
-      </div>
-    </article>
-  </div>
-
-  <!-- Optional: contact line under résumé -->
-  <div class="card" style="margin-top:1rem">
-    <div class="body">
-      <p class="muted" style="margin:0">
-        Putu Astika · <a href="mailto:astika327@gmail.com">astika327@gmail.com</a> ·
-        <a href="https://github.com/astika327-dev" target="_blank" rel="noopener">github.com/astika327-dev</a>
-      </p>
-    </div>
-  </div>
-</div>
-
-        <h4>Stack</h4>
-        <p>Notion, Google Suite, Figma/Canva, HTML/CSS/JS, Git, SEO basics.</p>
-      </div></article>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap footgrid">
+  <!-- Footer -->
+  <footer class="wrap footer">
+    <div class="identity">
+       <img src="assets/profile.png" alt="Putu Astika" class="logo" />
       <div>
-        <!-- <div class="row"><div class="logo"></div><b>Putu Astika</b></div> -->
-         <div class="logo">
-         <img src="assets/profile.png" alt="Putu Astika Logo">         
-         <b>Putu Astika</b>
-</div>
-
-        <p class="muted">© <span id="year"></span> — Built with hand‑written HTML/CSS/JS. Single file. Fast. Printable.</p>
-      </div>
-      <div class="row" style="justify-content:flex-end">
-        <a class="btn ghost" href="#">Top ↑</a>
-        <a class="btn" href="#contact">Hire Me</a>
+        <b>Putu Astika</b><br>
+        <span class="muted">© <span id="year"></span> — Built with hand-written HTML/CSS/JS.</span>
       </div>
     </div>
+    <a class="btn ghost" href="#top">Top ↑</a>
   </footer>
 
-  <script>
-    // ========== Theme persistence ==========
-    (function(){
-      const root = document.documentElement;
-      const pref = localStorage.getItem('theme');
-      if(pref){ root.setAttribute('data-theme', pref); }
-      const btn = document.getElementById('themeToggle');
-      btn?.addEventListener('click', ()=>{
-        const now = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        root.setAttribute('data-theme', now); localStorage.setItem('theme', now);
-      });
-    })();
-
-    // ========== Stats / year ==========
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // Adjust your starting year to compute years of experience quickly
-    const START_YEAR = 2020; // <- change this to your real start
-    document.getElementById('yearExp').textContent = Math.max(1, new Date().getFullYear() - START_YEAR);
-
-    // ========== Mailto form ==========
-    const mail = 'you@example.com'; // <- put your email here once
-    // const form = document.getElementById('mailForm');
-    form?.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const fd = new FormData(form);
-      const name = encodeURIComponent(fd.get('name'));
-      const email = encodeURIComponent(fd.get('email'));
-      const msg = encodeURIComponent(fd.get('msg'));
-      const subject = `Inquiry from ${decodeURIComponent(name)}`;
-      const body = `From: ${decodeURIComponent(name)} (%3C${decodeURIComponent(email)}%3E)%0D%0A%0D%0A${decodeURIComponent(msg)}`;
-      const href = `mailto:${mail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      location.href = href;
-    });
-    document.getElementById('copyEmail')?.addEventListener('click', (e)=>{e.preventDefault(); navigator.clipboard.writeText(mail)});
-
-    // ========== Print tweaks ==========
-    window.addEventListener('beforeprint',()=>document.querySelectorAll('a').forEach(a=>a.style.textDecoration='underline'));
-  </script>
-
-  <!-- ========== Structured Data ==========
-       Helps SEO; update with your info.
-  -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Putu Astika",
-    "url": "https://example.com",
-    "jobTitle": "Operator / Content / Lightweight Dev",
-    "sameAs": []
-  }
-  </script>
-  <script>
-  const shareBtn = document.getElementById("shareBtn");
-
-  shareBtn.addEventListener("click", async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: "Putu Astika – Portofolio",
-          text: "Check out my portfolio website!",
-          url: window.location.href   // otomatis ambil URL halaman ini
-        });
-        console.log("Page shared successfully");
-      } catch (err) {
-        console.log("Error sharing:", err);
-      }
-    } else {
-      alert("Sharing not supported on this browser. Copy link instead!");
-    }
-  });
-</script>
-
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
