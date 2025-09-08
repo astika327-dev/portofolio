@@ -87,13 +87,13 @@ body {
 .cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)) }
 .cols-3 { grid-template-columns: repeat(3, minmax(0,1fr)) }
 .cols-4 { grid-template-columns: repeat(4, minmax(0,1fr)) }
-@media (max-width: 980px) {
+@media (max-width: 680px) {
   .cols-4 { grid-template-columns: repeat(2, minmax(0,1fr)) }
   .cols-3 { grid-template-columns: repeat(2, minmax(0,1fr)) }
 }
 @media (max-width: 680px) {
   .cols-2, .cols-3, .cols-4 { grid-template-columns: 1fr }
-}
+/* } */
 
 /* Projects */
 .project .cover { aspect-ratio: 16/9; background:#0c1627; display:grid; place-items:center;
@@ -103,9 +103,20 @@ body {
 /* Forms */
 label { display:block; margin:.75rem 0 }
 input, textarea {
-  width:100%; background:#0e1729; border:1px solid var(--line); color:var(--txt);
-  border-radius:12px; padding:.8rem .9rem; outline:none
+  width: 100%;
+  background: var(--card);      /* pakai warna kartu gelapmu */
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: .8rem .9rem;
+  color: var(--fg);             /* teks utama */
+  outline: none;
 }
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);          /* abu-abu lembut */
+}
+
 input:focus, textarea:focus { border-color: color-mix(in oklab, var(--accent) 60%, var(--line)); box-shadow:0 0 0 3px color-mix(in oklab, var(--accent) 20%, transparent) }
 .actions { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:12px }
 .actions .btn { min-width:148px; text-align:center }
