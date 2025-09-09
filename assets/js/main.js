@@ -4,15 +4,22 @@ const WA_NUMBER   = "6282146178461"; // int'l format tanpa '+'
 const RESUME_URL  = "assets/Putu-Astika-Resume.pdf"; // pastikan file ini ada
 
 // ======== Theme toggle ========
+const toggle = document.getElementById("themeToggle");
 const html = document.documentElement;
-const themeBtn = document.getElementById("themeToggle");
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme) html.dataset.theme = savedTheme;
-themeBtn?.addEventListener("click", () => {
+const icon = toggle.querySelector("span"); // misalnya ada <span> buat ikon
+
+// cek theme tersimpan
+const savedTheme = localStorage.getItem("theme") || "dark";
+html.dataset.theme = savedTheme;
+icon.textContent = savedTheme === "dark" ? "🌙" : "☀️";
+
+toggle.addEventListener("click", () => {
   const next = html.dataset.theme === "dark" ? "light" : "dark";
   html.dataset.theme = next;
   localStorage.setItem("theme", next);
+  icon.textContent = next === "dark" ? "🌙" : "☀️";
 });
+
 
 // ======== Smooth in-page anchors ========
 document.querySelectorAll('a[href^="#"]').forEach(a => {
