@@ -83,17 +83,19 @@ body {
 .check li::marker { content:"✔  " }
 
 /* Grid */
-.grid { display:grid; gap: clamp(14px, 2.5vw, 22px) }
-.cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)) }
-.cols-3 { grid-template-columns: repeat(3, minmax(0,1fr)) }
-.cols-4 { grid-template-columns: repeat(4, minmax(0,1fr)) }
-@media (max-width: 680px) {
-  .cols-4 { grid-template-columns: repeat(2, minmax(0,1fr)) }
-  .cols-3 { grid-template-columns: repeat(2, minmax(0,1fr)) }
+.grid { display:grid; gap: clamp(14px, 2.5vw, 22px); }
+
+.cols-2 { grid-template-columns: repeat(2, minmax(260px, 1fr)); }
+.cols-3 { grid-template-columns: repeat(3, minmax(240px, 1fr)); }
+.cols-4 { grid-template-columns: repeat(4, minmax(220px, 1fr)); }
+
+@media (max-width: 980px) {
+  .cols-4 { grid-template-columns: repeat(2, minmax(220px, 1fr)); }
+  .cols-3 { grid-template-columns: repeat(2, minmax(240px, 1fr)); }
 }
 @media (max-width: 680px) {
-  .cols-2, .cols-3, .cols-4 { grid-template-columns: 1fr }
-/* } */
+  .cols-2, .cols-3, .cols-4 { grid-template-columns: 1fr; }
+}
 
 /* Projects */
 .project .cover {
@@ -126,7 +128,7 @@ input, textarea {
 
 input::placeholder,
 textarea::placeholder {
-  color: var(--muted);          /* abu-abu lembut */
+  color: var(--muted);       
 }
 
 input:focus, textarea:focus { border-color: color-mix(in oklab, var(--accent) 60%, var(--line)); box-shadow:0 0 0 3px color-mix(in oklab, var(--accent) 20%, transparent) }
@@ -146,4 +148,119 @@ input:focus, textarea:focus { border-color: color-mix(in oklab, var(--accent) 60
   .hero, .header, .footer, #projects, #contact { display:none !important }
   .card { border: 1px solid #ccc; box-shadow:none }
 }
+
+/* Layout header dasar */
+.site {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* brand | tabs | toggle (desktop) */
+  align-items: center;
+  gap: 12px;
+}
+
+/* Grid tombol nav (mobile first) */
+nav.tabs {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 10px 12px;
+}
+
+/* Style item nav */
+nav.tabs a {
+  display: block;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  font-weight: 600;
+  font-size: clamp(14px, 1.9vw, 18px);
+}
+
+/* Pisahkan toggle dari grid nav */
+#theme-toggle, #themeToggle {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: grid; place-items: center;
+}
+
+/* Tablet */
+@media (min-width: 720px){
+  nav.tabs { grid-template-columns: repeat(3, minmax(140px, 1fr)); }
+}
+
+/* Desktop */
+@media (min-width: 1024px){
+  nav.tabs { grid-template-columns: repeat(5, minmax(130px, 1fr)); }
+}
+
+/* Mobile header: brand + toggle di baris 1, tabs di baris 2 */
+@media (max-width: 680px){
+  .site {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand toggle"
+      "tabs  tabs";
+  }
+  .site .brand { grid-area: brand; }
+  nav.tabs      { grid-area: tabs; }
+  #theme-toggle, #themeToggle { grid-area: toggle; }
+}
+/* Header layout */
+header.header{
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* brand | nav | theme */
+  align-items: center;
+  gap: 12px;
+}
+
+/* Mobile-first: nav jadi grid 2 kolom */
+header.header .nav{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 10px 12px;
+  margin-top: 8px;
+}
+
+/* Style item nav */
+header.header .nav a{
+  display: block;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  font-weight: 600;
+  font-size: clamp(14px, 1.9vw, 18px);
+}
+
+/* Tombol theme */
+#themeToggle{
+  width: 44px; height: 44px; border-radius: 12px;
+  display: grid; place-items: center;
+}
+
+/* Tablet: 3 kolom */
+@media (min-width: 720px){
+  header.header .nav{
+    grid-template-columns: repeat(3, minmax(140px, 1fr));
+  }
+}
+
+/* Desktop: 5 kolom */
+@media (min-width: 1024px){
+  header.header .nav{
+    grid-template-columns: repeat(5, minmax(130px, 1fr));
+  }
+}
+
+/* Mobile: susun 2 baris (brand|theme) lalu nav penuh */
+@media (max-width: 680px){
+  header.header{
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand theme"
+      "nav   nav";
+  }
+  header.header .brand{ grid-area: brand; }
+  #themeToggle{ grid-area: theme; }
+  header.header .nav{ grid-area: nav; }
 }
