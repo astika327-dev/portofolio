@@ -43,6 +43,38 @@ body {
 .brand-name { font-weight:700; letter-spacing:.2px }
 .nav { display:flex; align-items:center; gap:.8rem; flex-wrap:wrap }
 .nav a { color:var(--muted); text-decoration:none; padding:.45rem .7rem; border-radius:10px }
+/* Samakan tinggi item nav */
+.nav a{
+  display:inline-flex;
+  align-items:center;
+  height:44px;               
+  padding:0 14px;            
+  border-radius:10px;
+}
+
+/* Toggle theme: ukuran & alignment */
+#themeToggle{
+  display:grid;              
+  place-items:center;
+  width:44px;                
+  height:44px;
+  margin-left:.4rem;         
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:rgba(255,255,255,.03);
+  color:var(--txt);
+  cursor:pointer;
+  padding:0;                 
+  line-height:1;             
+}
+
+/* Hover/focus efek biar konsisten */
+#themeToggle:hover,
+#themeToggle:focus-visible{
+  background: color-mix(in oklab, var(--txt) 6%, transparent);
+  outline:none;
+}
+
 .nav a:hover, .nav a:focus-visible { color:var(--txt); background: color-mix(in oklab, var(--txt) 6%, transparent); outline:none }
 
 /* Buttons */
@@ -263,4 +295,109 @@ header.header .nav a{
   header.header .brand{ grid-area: brand; }
   #themeToggle{ grid-area: theme; }
   header.header .nav{ grid-area: nav; }
+}
+/* --- Fix overflow form/card --- */
+.card { overflow: hidden; }                 /* cegah isi tumpah */
+.wrap, .card, form { min-width: 0; }        /* penting saat pakai flex/grid */
+
+form#contact, /* ganti id/selector sesuai punyamu */
+.section .card .body form {
+  display: grid;
+  gap: 12px;
+}
+
+/* Kolom input 100%, hitung padding+border */
+label { display: block; }
+input, textarea, select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Baris tombol: 1 kolom di mobile, rapih di desktop */
+.actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+/* Tombol tidak melebar keluar */
+.actions .btn,
+.actions a.btn {
+  width: 100%;
+  min-width: 0;                 /* override min-width bawaan */
+  justify-content: center;
+}
+
+/* Persempit padding card di layar kecil biar aman */
+@media (max-width: 420px){
+  .card .body { padding: 14px; }
+}
+
+/* Dua kolom tombol di layar lebar (opsional) */
+@media (min-width: 860px){
+  .actions { grid-template-columns: 1fr 1fr; }
+}
+/* ===== Contact card: hard fix overflow (desktop & mobile) ===== */
+
+/* Klip isi di dalam radius card */
+#contact .card,
+.section#contact .card {
+  overflow: hidden;
+  border-radius: 22px;
+  contain: layout paint;           /* efek (shadow/focus) tetap diklip */
+}
+
+/* Jangan ada elemen yang ngeyel lebarnya */
+#contact .card *,
+#contact form * {
+  min-width: 0;                    /* penting untuk grid/flex child */
+  box-sizing: border-box;
+}
+
+/* Layout form rapih */
+#contact .body {
+  display: grid;
+  gap: 14px;
+}
+
+/* Dua kolom field di desktop, aman dari overflow */
+#contact .grid.cols-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+}
+
+/* Field full width di dalam kolom */
+#contact label { display: block; }
+#contact input,
+#contact textarea,
+#contact select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Area tombol */
+#contact .actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 kolom di desktop */
+  gap: 12px;
+  align-items: stretch;
+}
+#contact .actions .btn,
+#contact .actions a.btn {
+  inline-size: 100%;
+  min-inline-size: 0;               /* override min-width bawaan */
+  max-inline-size: 100%;
+  justify-content: center;
+}
+
+/* Global: kalau ada min-width tombol bawaan, netralkan */
+.btn { min-width: 0; max-width: 100%; }
+
+/* Mobile: 1 kolom semua biar lega */
+@media (max-width: 680px) {
+  #contact .grid.cols-2 { grid-template-columns: 1fr; }
+  #contact .actions      { grid-template-columns: 1fr; }
 }
