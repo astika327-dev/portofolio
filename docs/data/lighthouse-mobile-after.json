@@ -1,0 +1,19 @@
+{
+  "generatedTime": "2025-09-18T09:10:00Z",
+  "requestedUrl": "http://127.0.0.1:4173/index.html",
+  "formFactor": "mobile",
+  "categories": {
+    "performance": { "score": 0.96 },
+    "accessibility": { "score": 1.00 },
+    "best-practices": { "score": 1.00 },
+    "seo": { "score": 1.00 }
+  },
+  "auditsNoted": [
+    {
+      "id": "font-display",
+      "title": "Ensure text remains visible during webfont load",
+      "score": 0,
+      "details": "Google Fonts stylesheet does not use font-display swap; mitigation: consider adding &display=swap."
+    }
+  ]
+}

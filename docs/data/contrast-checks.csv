@@ -1,0 +1,7 @@
+# Generated 2025-09-18T08:57:44.403104+00:00 using WCAG contrast formula
+Scenario,Foreground,Background,ContrastRatio
+Primary text on background,#e9eefc,#0b1220,16.14
+Muted text on background,#a8b2d1,#0b1220,8.87
+Brand button on background,#36a3ff,#0b1220,6.99
+Tag text on brand pill,#001b2e,#36a3ff,6.55
+Focus outline vs background,#0b1220,#e9eefc,16.14
