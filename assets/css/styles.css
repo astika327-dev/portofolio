@@ -8,7 +8,7 @@
   --brand-2: #6cc2ff;
   --card: #111a2e;
   --card-2: #0f1830;
-  --ring: rgba(54,163,255,.35);
+  --ring: rgba(255,255,255,.7);
   --shadow: 0 10px 30px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box}
@@ -27,6 +27,7 @@ body{
 .brand{display:inline-flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font-weight:800}
 .brand img{display:block}
 .nav-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--ink);padding:8px 10px;border-radius:10px}
+.nav-toggle:focus-visible{outline:none;border-color:#fff;box-shadow:0 0 0 4px var(--ring)}
 .nav-links{display:flex;gap:12px;flex-wrap:wrap}
 .nav-link{color:var(--ink);text-decoration:none;padding:8px 12px;border-radius:10px;border:1px solid transparent}
 .nav-link:hover,.nav-link:focus{background:rgba(108,194,255,.08);border-color:var(--line);outline:none;box-shadow:0 0 0 4px var(--ring)}
@@ -59,6 +60,9 @@ body{
 .btn.primary{background:linear-gradient(135deg, var(--brand), var(--brand-2));color:#001b2e}
 .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--brand)}
 .btn:hover{filter:brightness(1.08)}
+.btn:focus-visible,
+a.btn:focus-visible,
+button.btn:focus-visible{outline:none;box-shadow:0 0 0 4px var(--ring)}
 
 /* Resume mini */
 .resume-mini ul{margin:8px 0 0 0;padding-left:18px;color:var(--muted)}
