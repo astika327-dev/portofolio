@@ -1,20 +1,26 @@
-# Putu Astika — Portfolio (Pro Dark/Blue)
+# Putu Astika — Portfolio (Multi-page Dark/Blue)
 
-A fast, professional portfolio with a dark navy + electric blue aesthetic.
+A world-class, multi-page portfolio with a dark navy + electric blue aesthetic.
 
 ## Features
-- Sticky, translucent navbar with mobile menu
-- Clean hero section (100vh) with strong headline
-- Projects grid (cards)
-- Certificates section (FCC: RWD + Front End Libraries)
-- Contact & quick resume preview
-- Accessible focus states, reduced motion handling
-- Print & Web Share helpers
+- Sticky, translucent navbar with mobile focus trap and active-page highlighting
+- Immersive hero with availability meta panel
+- Dedicated pages for Work, Skills (with resume snapshot), About, and Contact
+- Project case studies with imagery, feature lists, and outbound links
+- Certificates and resume actions (PDF, print, share)
+- Accessible focus states, reduced motion handling, and skip link
 - Lightweight: vanilla HTML/CSS/JS (no build step)
 
+## Pages
+- `index.html` — Hero, focus areas, highlighted projects, contact CTA
+- `work.html` — Deep dives into PromptCraft, Ops Playbook, and Mini-Tools
+- `skills.html` — Capabilities grid, certifications, resume snapshot
+- `about.html` — Working style, background, and tooling overview
+- `contact.html` — Preferred channels, availability, and logistics
+
 ## Customize
-- **Links:** Update project URLs, email/WhatsApp, and resume link in `index.html`.
-- **Brand:** Replace `assets/logo.svg` as needed. Colors are in CSS variables.
+- **Links:** Update project URLs, email/WhatsApp, and resume link in the respective pages.
+- **Brand:** Replace `assets/profile.png` and `assets/logo.svg` as needed. Colors are in CSS variables.
 - **OG image:** Replace `assets/og-image.png` (1200×630).
 
 ## Deploy to GitHub Pages
