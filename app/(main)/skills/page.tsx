@@ -1,4 +1,22 @@
+'use client';
+
 export default function Skills() {
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: document.title,
+        url: window.location.href,
+      }).catch(console.error);
+    } else {
+      // Fallback for browsers that don't support the Web Share API
+      alert("Sharing is not supported on this browser.");
+    }
+  };
+
   return (
     <main id="main-content" tabIndex={-1}>
       <section className="page-hero">
@@ -14,11 +32,11 @@ export default function Skills() {
         </div>
         <div className="card-grid card-grid--three">
           <article className="card card--focus">
-            <h3>Pengembangan Web</h3>
+            <h3>Web Development</h3>
             <ul>
-              <li>Pengembangan Frontend</li>
-              <li>Pengembangan Aplikasi Web (Full-Stack)</li>
-              <li>Pengembangan Game (Berbasis Web)</li>
+              <li>Frontend Development</li>
+              <li>Full-Stack Web Application Development</li>
+              <li>Web-Based Game Development</li>
               <li>JavaScript, React.js, Next.js, Node.js</li>
               <li>HTML5, CSS3</li>
             </ul>
@@ -26,20 +44,20 @@ export default function Skills() {
           <article className="card card--focus">
             <h3>AI &amp; Data</h3>
             <ul>
-              <li>Pengembangan dengan Bantuan AI</li>
-              <li>Rekayasa Prompt (Prompt Engineering)</li>
-              <li>Integrasi API</li>
-              <li>Analisis Data</li>
+              <li>AI-Assisted Development</li>
+              <li>Prompt Engineering</li>
+              <li>API Integration</li>
+              <li>Data Analysis</li>
             </ul>
           </article>
           <article className="card card--focus">
-            <h3>Manajemen &amp; DevOps</h3>
+            <h3>Management &amp; DevOps</h3>
             <ul>
-              <li>Manajemen Proyek</li>
+              <li>Project Management</li>
               <li>DevOps</li>
-              <li>Deployment (Penerapan Aplikasi)</li>
-              <li>Refactoring Kode</li>
-              <li>Perencanaan Arsitektur</li>
+              <li>Deployment</li>
+              <li>Code Refactoring</li>
+              <li>Architecture Planning</li>
               <li>Git, Vercel (Platform)</li>
             </ul>
           </article>
@@ -81,8 +99,8 @@ export default function Skills() {
           </div>
           <div className="resume-panel__actions">
             <a className="btn btn--primary" href="/assets/Putu-Astika-Resume.pdf" target="_blank" rel="noopener">View PDF</a>
-            <button className="btn btn--ghost" type="button" data-print>Print</button>
-            <button className="btn btn--ghost" type="button" data-share>Share</button>
+            <button className="btn btn--ghost" type="button" onClick={handlePrint}>Print</button>
+            <button className="btn btn--ghost" type="button" onClick={handleShare}>Share</button>
           </div>
         </div>
       </section>

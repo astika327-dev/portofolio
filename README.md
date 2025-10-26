@@ -1,33 +1,40 @@
-# Putu Astika — Portfolio (Multi-page Dark/Blue)
+# Putu Astika's Portfolio
 
-A world-class, multi-page portfolio with a dark navy + electric blue aesthetic.
+This is the source code for my personal portfolio website, live at [astika.is-a.dev](https://astika.is-a.dev).
 
-## Features
-- Sticky, translucent navbar with mobile focus trap and active-page highlighting
-- Immersive hero with availability meta panel
-- Dedicated pages for Work, Skills (with resume snapshot), About, and Contact
-- Project case studies with imagery, feature lists, and outbound links
-- Certificates and resume actions (PDF, print, share)
-- Accessible focus states, reduced motion handling, and skip link
-- Lightweight: vanilla HTML/CSS/JS (no build step)
+This project is a complete overhaul of my original static HTML/CSS portfolio, rebuilt from the ground up with Next.js to leverage modern web development practices and prepare for future enhancements.
 
-## Pages
-- `index.html` — Hero, focus areas, highlighted projects, contact CTA
-- `work.html` — Deep dives into PromptCraft, Ops Playbook, and Mini-Tools
-- `skills.html` — Capabilities grid, certifications, resume snapshot
-- `about.html` — Working style, background, and tooling overview
-- `contact.html` — Preferred channels, availability, and logistics
+## Tech Stack
 
-## Customize
-- **Links:** Update project URLs, email/WhatsApp, and resume link in the respective pages.
-- **Brand:** Replace `assets/profile.png` and `assets/logo.svg` as needed. Colors are in CSS variables.
-- **OG image:** Replace `assets/og-image.png` (1200×630).
+*   **Framework:** [Next.js](https://nextjs.org/) (React)
+*   **Styling:** Vanilla CSS (from the original project)
+*   **Deployment:** [Vercel](https://vercel.com/)
 
-## Deploy to GitHub Pages
-1. Create a repo (e.g., `astika.is-a.dev` or `portfolio`).
-2. Put these files at the repo root and push.
-3. Enable **Pages** → Branch `main` → `/ (root)`.
-4. Optional: add a `CNAME` file with `astika.is-a.dev` if using a custom domain.
+## Key Features
 
-## License
-Personal use permitted. © Putu Astika.
+*   **Modern Architecture:** Migrated from a static site to a powerful, component-based Next.js application.
+*   **Responsive Design:** Fully responsive layout, ensuring a great user experience on all devices.
+*   **Interactive Elements:** Includes a functional mobile navigation menu and dynamic "Print" and "Share" buttons on the skills page.
+*   **Live Business Link:** Features a link to my business website: [bali-webdevelover.com](https://bali-webdevelover.com).
+
+## Getting Started
+
+To run this project locally, follow these steps:
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/astika327-dev/astika327-dev.github.io.git
+    cd astika327-dev.github.io
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
