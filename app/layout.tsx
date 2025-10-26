@@ -1,6 +1,6 @@
-import '../globals.css';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import './globals.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export const metadata = {
   title: 'Putu Astika — Builder, Operator, Problem-solver.',
