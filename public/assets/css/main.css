@@ -1,0 +1,459 @@
+:root {
+  --bg: #0b1220;
+  --bg-soft: #0f172a;
+  --txt: #e6edf7;
+  --muted: #9fb0c9;
+  --accent: #1fb6ff;
+  --line: color-mix(in oklab, var(--txt) 14%, transparent);
+  --shadow: 0 10px 28px rgba(0,0,0,.35);
+  --radius: 18px;
+}
+
+/* Light theme vars */
+html[data-theme="light"] {
+  --bg: #f7fbff;
+  --bg-soft: #ffffff;
+  --txt: #0f172a;
+  --muted: #5a6b85;
+  --accent: #0077ff;
+  --line: color-mix(in oklab, #000 12%, transparent);
+}
+
+html,body { height: 100% }
+html { scroll-behavior: smooth }
+body {
+  margin: 0;
+  color: var(--txt);
+  background:
+    radial-gradient(1400px 600px at 12% -10%, #13243f66, transparent 43%),
+    radial-gradient(1000px 500px at 90% -20%, #0e1d3466, transparent 45%),
+    var(--bg);
+  font: 400 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: clamp(16px, 3vw, 28px) }
+.sr-only { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
+
+/* Header / Nav */
+.header { display:flex; align-items:center; justify-content:space-between; gap:1rem }
+.brand { display:flex; align-items:center; gap:.8rem; color:var(--txt); text-decoration:none }
+.logo { width:42px; height:42px; border-radius:12px; background:
+        radial-gradient(70% 70% at 30% 30%, #2ea7ff 0%, #0066cc 70%); display:block }
+.logo.xs { width:28px; height:28px; border-radius:10px }
+.brand-name { font-weight:700; letter-spacing:.2px }
+.nav { display:flex; align-items:center; gap:.8rem; flex-wrap:wrap }
+.nav a { color:var(--muted); text-decoration:none; padding:.45rem .7rem; border-radius:10px }
+/* Samakan tinggi item nav */
+
+/* Default: mobile first */
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;         
+  padding: 0 6px;      
+  font-size: 12px;      
+  border-radius: 6px;
+  min-width: auto;      
+}
+/* Tablet & Desktop */
+@media (min-width: 768px) {
+  .nav a {
+    height: 34px;       
+    padding: 0 12px;    
+    font-size: 14px; 
+    border-radius: 8px;   
+    min-width: auto;    
+  }
+}
+/* Toggle theme: ukuran & alignment */
+/* Tombol dasar */
+#themeToggle {
+  display: grid;
+  place-items: center;
+  width: auto;
+  height: auto;
+  margin-left: .5rem;
+  border: none;
+  border-radius: none;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#themeToggle:hover {
+  transform: scale(1.1);
+}
+
+#themeToggle:active {
+  transform: scale(0.95);
+}
+
+/* Ikon dalam */
+#themeToggle .icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--txt);   /* default bulan/matahari */
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+/* Mode terang → ikon matahari */
+html[data-theme="light"] #themeToggle .icon {
+  box-shadow: 0 0 0 4px var(--txt) inset,
+              0 0 0 8px rgba(255, 200, 0, 0.5);
+  background: yellow;
+}
+
+/* Mode gelap → ikon bulan */
+html[data-theme="dark"] #themeToggle .icon {
+  background: #fff;
+}
+html[data-theme="dark"] #themeToggle .icon::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bg);
+  transition: all 0.4s ease;
+}
+
+
+/* Hover/focus efek biar konsisten */
+#themeToggle:hover,
+#themeToggle:focus-visible{
+  background: color-mix(in oklab, var(--txt) 6%, transparent);
+  outline:none;
+}
+
+.nav a:hover, .nav a:focus-visible { color:var(--txt); background: color-mix(in oklab, var(--txt) 6%, transparent); outline:none }
+
+/* Buttons */
+.btn {
+  --bg-btn: var(--accent);
+  display:inline-block; border:none; color:#001220; background:var(--bg-btn);
+  padding:.7rem 1.1rem; border-radius:12px; text-decoration:none; font-weight:700;
+  box-shadow: var(--shadow); cursor:pointer; transition: transform .06s ease
+}
+.btn:hover { transform: translateY(-1px) }
+.btn:active { transform: translateY(0) }
+.btn.ghost { background:transparent; color:var(--txt); border:1px solid var(--line) }
+.btn[aria-disabled="true"] { opacity:.6; pointer-events:none }
+
+/* Pills */
+.pill { display:inline-block; padding:.35rem .7rem; border-radius:999px;
+  border:1px solid var(--line); color:var(--muted); background:rgba(255,255,255,.02) }
+
+/* Hero */
+.hero { padding: 12px 0 8px }
+.hero-inner { padding-top: clamp(6px, 3.8vw, 26px) }
+.badges { display:flex; gap:.5rem; flex-wrap:wrap }
+.title { font-size: clamp(28px, 5vw, 54px); line-height:1.1; margin:.6rem 0 1rem }
+.lede  { font-size: clamp(16px, 2.1vw, 20px); color:var(--muted); max-width: 60ch }
+.row { display:flex; gap:.8rem; align-items:center; flex-wrap:wrap }
+
+/* Sections */
+.section { padding: clamp(26px, 5vw, 48px) 0 }
+.title h2 { margin:0 0 .35rem; font-size: clamp(20px, 2.6vw, 28px) }
+.subtitle { margin:0; color:var(--muted) }
+
+/* Cards */
+.card { background: var(--bg-soft); border:1px solid var(--line); border-radius: var(--radius);
+        box-shadow: var(--shadow); overflow:hidden }
+.card .body { padding: clamp(14px, 2.4vw, 22px) }
+.card h3 { margin:0 0 .6rem }
+.check, .bullets { margin:.2rem 0 0 1.1rem }
+.check li::marker { content:"✔  " }
+
+/* Grid */
+.grid { display:grid; gap: clamp(14px, 2.5vw, 22px); }
+
+.cols-2 { grid-template-columns: repeat(2, minmax(260px, 1fr)); }
+.cols-3 { grid-template-columns: repeat(3, minmax(240px, 1fr)); }
+.cols-4 { grid-template-columns: repeat(4, minmax(220px, 1fr)); }
+
+@media (max-width: 980px) {
+  .cols-4 { grid-template-columns: repeat(2, minmax(220px, 1fr)); }
+  .cols-3 { grid-template-columns: repeat(2, minmax(240px, 1fr)); }
+}
+@media (max-width: 680px) {
+  .cols-2, .cols-3, .cols-4 { grid-template-columns: 1fr; }
+}
+
+/* Projects */
+.project .cover {
+  aspect-ratio: 16/9;      /* Biar semua card konsisten bentuk kotak */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0e1627;     /* Warna background netral */
+  overflow: hidden;        /* Biar gambar nggak keluar kotak */
+}
+
+.project .cover img {
+  max-width: 80%;          /* Gambar nggak lebih besar dari card */
+  max-height: 80%;
+  object-fit: contain;     /* Biar nggak terpotong */
+}
+
+
+/* Forms */
+label { display:block; margin:.75rem 0 }
+input, textarea {
+  width: 100%;
+  background: var(--card);      /* pakai warna kartu gelapmu */
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: .8rem .9rem;
+  color: var(--fg);             /* teks utama */
+  outline: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);       
+}
+
+input:focus, textarea:focus { border-color: color-mix(in oklab, var(--accent) 60%, var(--line)); box-shadow:0 0 0 3px color-mix(in oklab, var(--accent) 20%, transparent) }
+.actions { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:12px }
+.actions .btn { min-width:148px; text-align:center }
+.muted { color:var(--muted) }
+
+/* Footer */
+.footer { display:flex; align-items:center; justify-content:space-between; padding: 22px 0; gap:1rem }
+.identity { display:flex; align-items:center; gap:.8rem }
+
+/* Print: show résumé only */
+.print-only { display:block }
+@media screen { .print-only { display:block } }
+@media print {
+  body { background:#fff; color:#000 }
+  .hero, .header, .footer, #projects, #contact { display:none !important }
+  .card { border: 1px solid #ccc; box-shadow:none }
+}
+
+/* Layout header dasar */
+.site {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* brand | tabs | toggle (desktop) */
+  align-items: center;
+  gap: 12px;
+}
+
+/* Grid tombol nav (mobile first) */
+nav.tabs {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 10px 12px;
+}
+
+/* Style item nav */
+nav.tabs a {
+  display: block;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  font-weight: 600;
+  font-size: clamp(14px, 1.9vw, 18px);
+}
+
+/* Pisahkan toggle dari grid nav */
+#theme-toggle, #themeToggle {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: grid; place-items: center;
+}
+
+/* Tablet */
+@media (min-width: 720px){
+  nav.tabs { grid-template-columns: repeat(3, minmax(140px, 1fr)); }
+}
+
+/* Desktop */
+@media (min-width: 1024px){
+  nav.tabs { grid-template-columns: repeat(5, minmax(130px, 1fr)); }
+}
+
+/* Mobile header: brand + toggle di baris 1, tabs di baris 2 */
+@media (max-width: 680px){
+  .site {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand toggle"
+      "tabs  tabs";
+  }
+  .site .brand { grid-area: brand; }
+  nav.tabs      { grid-area: tabs; }
+  #theme-toggle, #themeToggle { grid-area: toggle; }
+}
+/* Header layout */
+header.header{
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* brand | nav | theme */
+  align-items: center;
+  gap: 12px;
+}
+
+/* Mobile-first: nav jadi grid 2 kolom */
+header.header .nav{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 10px 12px;
+  margin-top: 8px;
+}
+
+/* Style item nav */
+header.header .nav a{
+  display: block;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  font-weight: 600;
+  font-size: clamp(14px, 1.9vw, 18px);
+}
+
+/* Tombol theme */
+#themeToggle{
+  width: 44px; height: 44px; border-radius: 12px;
+  display: grid; place-items: center;
+}
+
+/* Tablet: 3 kolom */
+@media (min-width: 720px){
+  header.header .nav{
+    grid-template-columns: repeat(3, minmax(140px, 1fr));
+  }
+}
+
+/* Desktop: 5 kolom */
+@media (min-width: 1024px){
+  header.header .nav{
+    grid-template-columns: repeat(5, minmax(130px, 1fr));
+  }
+}
+
+/* Mobile: susun 2 baris (brand|theme) lalu nav penuh */
+@media (max-width: 680px){
+  header.header{
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand theme"
+      "nav   nav";
+  }
+  header.header .brand{ grid-area: brand; }
+  #themeToggle{ grid-area: theme; }
+  header.header .nav{ grid-area: nav; }
+}
+/* --- Fix overflow form/card --- */
+.card { overflow: hidden; }                 /* cegah isi tumpah */
+.wrap, .card, form { min-width: 0; }        /* penting saat pakai flex/grid */
+
+form#contact, /* ganti id/selector sesuai punyamu */
+.section .card .body form {
+  display: grid;
+  gap: 12px;
+}
+
+/* Kolom input 100%, hitung padding+border */
+label { display: block; }
+input, textarea, select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Baris tombol: 1 kolom di mobile, rapih di desktop */
+.actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+/* Tombol tidak melebar keluar */
+.actions .btn,
+.actions a.btn {
+  width: 100%;
+  min-width: 0;                 /* override min-width bawaan */
+  justify-content: center;
+}
+
+/* Persempit padding card di layar kecil biar aman */
+@media (max-width: 420px){
+  .card .body { padding: 14px; }
+}
+
+/* Dua kolom tombol di layar lebar (opsional) */
+@media (min-width: 860px){
+  .actions { grid-template-columns: 1fr 1fr; }
+}
+/* ===== Contact card: hard fix overflow (desktop & mobile) ===== */
+
+/* Klip isi di dalam radius card */
+#contact .card,
+.section#contact .card {
+  overflow: hidden;
+  border-radius: 22px;
+  contain: layout paint;           /* efek (shadow/focus) tetap diklip */
+}
+
+/* Jangan ada elemen yang ngeyel lebarnya */
+#contact .card *,
+#contact form * {
+  min-width: 0;                    /* penting untuk grid/flex child */
+  box-sizing: border-box;
+}
+
+/* Layout form rapih */
+#contact .body {
+  display: grid;
+  gap: 14px;
+}
+
+/* Dua kolom field di desktop, aman dari overflow */
+#contact .grid.cols-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+}
+
+/* Field full width di dalam kolom */
+#contact label { display: block; }
+#contact input,
+#contact textarea,
+#contact select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Area tombol */
+#contact .actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 kolom di desktop */
+  gap: 12px;
+  align-items: stretch;
+}
+#contact .actions .btn,
+#contact .actions a.btn {
+  inline-size: 100%;
+  min-inline-size: 0;               /* override min-width bawaan */
+  max-inline-size: 100%;
+  justify-content: center;
+}
+
+/* Global: kalau ada min-width tombol bawaan, netralkan */
+.btn { min-width: 0; max-width: 100%; }
+
+/* Mobile: 1 kolom semua biar lega */
+@media (max-width: 680px) {
+  #contact .grid.cols-2 { grid-template-columns: 1fr; }
+  #contact .actions      { grid-template-columns: 1fr; }
+}
