@@ -3,7 +3,7 @@ import { FadeIn, ScaleIn } from "../animation";
 export default function Contact() {
   return (
     <main>
-      <div className="container mx-auto px-4 py-24">
+      <div className="container mx-auto px-4 py-16 md:py-24">
         <FadeIn>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-center">
             Get in Touch
@@ -14,7 +14,7 @@ export default function Contact() {
         </FadeIn>
       </div>
 
-      <div className="py-24 bg-bg-alt">
+      <div className="py-16 md:py-24 bg-bg-alt">
         <div className="container mx-auto px-4">
           <FadeIn>
             <h2 className="text-4xl font-bold text-center">Contact Me</h2>
@@ -22,7 +22,7 @@ export default function Contact() {
               Feel free to reach out through any of the channels below.
             </p>
           </FadeIn>
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             <ScaleIn>
               <div className="p-8 bg-surface rounded-lg text-center">
                 <h3 className="text-2xl font-bold">Email</h3>

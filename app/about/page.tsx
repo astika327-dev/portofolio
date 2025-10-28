@@ -3,7 +3,7 @@ import { FadeIn, ScaleIn } from "../animation";
 export default function About() {
   return (
     <main>
-      <div className="container mx-auto px-4 py-24">
+      <div className="container mx-auto px-4 py-16 md:py-24">
         <FadeIn>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-center">
             About Me
@@ -14,7 +14,7 @@ export default function About() {
         </FadeIn>
       </div>
 
-      <div className="py-24 bg-bg-alt">
+      <div className="py-16 md:py-24 bg-bg-alt">
         <div className="container mx-auto px-4">
           <FadeIn>
             <h2 className="text-4xl font-bold text-center">How I Work</h2>

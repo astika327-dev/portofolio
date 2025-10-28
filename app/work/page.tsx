@@ -4,7 +4,7 @@ import { FadeIn, ScaleIn } from "../animation";
 export default function Work() {
   return (
     <main>
-      <div className="container mx-auto px-4 py-24">
+      <div className="container mx-auto px-4 py-16 md:py-24">
         <FadeIn>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-center">
             My Work
@@ -15,11 +15,11 @@ export default function Work() {
         </FadeIn>
       </div>
 
-      <div className="py-24 bg-bg-alt">
+      <div className="py-16 md:py-24 bg-bg-alt">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-1 gap-16">
             <FadeIn>
-              <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className="order-2 md:order-1">
                   <h2 className="text-4xl font-bold">PromptCraft</h2>
                   <p className="mt-2 text-lg text-ink-subtle">
@@ -44,7 +44,7 @@ export default function Work() {
             </FadeIn>
 
             <FadeIn>
-              <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
                   <ScaleIn>
                     <Image src="/assets/opsplaybookimage.png" alt="Ops Playbook checklists preview" loading="lazy" width={600} height={400} className="rounded-lg" />
@@ -69,7 +69,7 @@ export default function Work() {
             </FadeIn>
 
             <FadeIn>
-              <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className="order-2 md:order-1">
                   <h2 className="text-4xl font-bold">Mini-Tools</h2>
                   <p className="mt-2 text-lg text-ink-subtle">
