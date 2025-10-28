@@ -1,56 +1,55 @@
+import { FadeIn, ScaleIn } from "../animation";
+
 export default function Contact() {
   return (
-    <main id="main-content" tabIndex={-1}>
-      <section className="page-hero">
-        <p className="eyebrow">Contact</p>
-        <h1>Short message, clear ask. Open for freelance and collaboration.</h1>
-        <p>Outline the problem, the desired outcome, and where the work will live. I’ll reply within one business day.</p>
-      </section>
+    <main>
+      <div className="container mx-auto px-4 py-24">
+        <FadeIn>
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-center">
+            Get in Touch
+          </h1>
+          <p className="mt-4 text-lg md:text-xl text-center max-w-3xl mx-auto text-ink-subtle">
+            I'm always open to discussing new projects, creative ideas, or opportunities to be part of an amazing team.
+          </p>
+        </FadeIn>
+      </div>
 
-      <section className="section" aria-labelledby="channels-heading">
-        <div className="section__header">
-          <h2 id="channels-heading">Preferred channels</h2>
-          <p className="section__lede">Pick the lane that suits your workflow. I keep response windows tight.</p>
-        </div>
-        <div className="card-grid card-grid--three">
-          <article className="card card--contact">
-            <h3>Email</h3>
-            <p>Detailed briefs, attachments, and timelines.</p>
-            <a className="btn btn--ghost" href="mailto:astika327@gmail.com">astika327@gmail.com</a>
-          </article>
-          <article className="card card--contact">
-            <h3>WhatsApp</h3>
-            <p>Fast check-ins or voice notes when async isn’t enough.</p>
-            <a className="btn btn--ghost" href="https://wa.me/6282146178461" target="_blank" rel="noopener">+62 821 4617 8461</a>
-          </article>
-          <article className="card card--contact">
-            <h3>GitHub</h3>
-            <p>See build history, source, and documentation habits.</p>
-            <a className="btn btn--ghost" href="https://github.com/astika327-dev" target="_blank" rel="noopener">github.com/astika327-dev</a>
-          </article>
-        </div>
-      </section>
-
-      <section className="section" aria-labelledby="logistics-heading">
-        <div className="section__header">
-          <h2 id="logistics-heading">Logistics</h2>
-          <p className="section__lede">Transparent about availability, timezone, and how to kick things off.</p>
-        </div>
-        <div className="logistics-grid">
-          <div className="logistics-card">
-            <h3>Availability</h3>
-            <p>Available for work</p>
-          </div>
-          <div className="logistics-card">
-            <h3>Location</h3>
-            <p>Denpasar, Bali</p>
-          </div>
-          <div className="logistics-card">
-            <h3>Timezone</h3>
-            <p>UTC+8</p>
+      <div className="py-24 bg-bg-alt">
+        <div className="container mx-auto px-4">
+          <FadeIn>
+            <h2 className="text-4xl font-bold text-center">Contact Me</h2>
+            <p className="mt-2 text-lg text-center text-ink-subtle">
+              Feel free to reach out through any of the channels below.
+            </p>
+          </FadeIn>
+          <div className="grid md:grid-cols-3 gap-8 mt-12">
+            <ScaleIn>
+              <div className="p-8 bg-surface rounded-lg text-center">
+                <h3 className="text-2xl font-bold">Email</h3>
+                <p className="mt-2 text-ink-subtle">
+                  <a href="mailto:astika322@gmail.com" className="text-primary hover:underline">astika322@gmail.com</a>
+                </p>
+              </div>
+            </ScaleIn>
+            <ScaleIn delay={0.1}>
+              <div className="p-8 bg-surface rounded-lg text-center">
+                <h3 className="text-2xl font-bold">WhatsApp</h3>
+                <p className="mt-2 text-ink-subtle">
+                  <a href="https://wa.me/6282146178461" target="_blank" rel="noopener" className="text-primary hover:underline">+62 821 4617 8461</a>
+                </p>
+              </div>
+            </ScaleIn>
+            <ScaleIn delay={0.2}>
+              <div className="p-8 bg-surface rounded-lg text-center">
+                <h3 className="text-2xl font-bold">GitHub</h3>
+                <p className="mt-2 text-ink-subtle">
+                  <a href="https://github.com/astika322-dev" target="_blank" rel="noopener" className="text-primary hover:underline">astika322-dev</a>
+                </p>
+              </div>
+            </ScaleIn>
           </div>
         </div>
-      </section>
+      </div>
     </main>
   );
 }
