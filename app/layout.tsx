@@ -53,7 +53,9 @@ export default function RootLayout({
             </div>
           )}
         </header>
-        {children}
+        <main className={isMenuOpen ? 'pt-48' : ''}>
+          {children}
+        </main>
         <footer className="py-6 mt-24 bg-bg-alt">
           <div className="container mx-auto text-center text-ink-subtle">
             <p>&copy; {new Date().getFullYear()} Putu Astika. All rights reserved.</p>
