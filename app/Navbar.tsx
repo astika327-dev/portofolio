@@ -2,105 +2,134 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { name } from "./data";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 768) {
-        setIsOpen(false);
-      }
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
     };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isOpen]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const navLinks = [
+    { href: "#about", label: "About" },
+    { href: "#skills", label: "Skills" },
+    { href: "#projects", label: "Projects" },
+    { href: "#contact", label: "Contact" },
+  ];
+
   const menuVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: "-100%" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: "-100%",
+      transition: {
+        ease: "easeInOut",
+      },
+    },
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-gray-800 bg-opacity-50 backdrop-blur-md">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <Link href="/" className="text-2xl font-bold text-white">
-              Astika
-            </Link>
-          </div>
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/about" className="text-gray-300 hover:text-white transition-colors duration-300">
-              About
-            </Link>
-            <Link href="/skills" className="text-gray-300 hover:text-white transition-colors duration-300">
-              Skills
-            </Link>
-            <Link href="/work" className="text-gray-300 hover:text-white transition-colors duration-300">
-              Work
-            </Link>
-            <Link href="/contact" className="text-gray-300 hover:text-white transition-colors duration-300">
-              Contact
-            </Link>
-          </nav>
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-              aria-expanded="false"
-            >
-              <span className="sr-only">Open main menu</span>
-              {isOpen ? (
-                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+          isScrolled || isOpen ? "bg-gray-900" : "bg-transparent"
+        }`}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            <div className="flex-shrink-0">
+              <Link href="/" className="text-3xl font-bold text-white">
+                {name}
+              </Link>
+            </div>
+            <nav className="hidden md:flex items-center space-x-8">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-gray-300 hover:text-white transition-colors duration-300 text-lg"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+            <div className="md:hidden flex items-center">
+              <button
+                onClick={toggleMenu}
+                className="z-50 text-gray-300 focus:outline-none"
+                aria-label="Toggle menu"
+              >
+                <div className="w-6 h-6 flex flex-col justify-around">
+                  <motion.span
+                    animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 8 : 0 }}
+                    className="block w-full h-0.5 bg-white"
+                  ></motion.span>
+                  <motion.span
+                    animate={{ opacity: isOpen ? 0 : 1 }}
+                    className="block w-full h-0.5 bg-white"
+                  ></motion.span>
+                  <motion.span
+                    animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? -8 : 0 }}
+                    className="block w-full h-0.5 bg-white"
+                  ></motion.span>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </header>
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="md:hidden"
-            id="mobile-menu"
+            className="fixed inset-0 bg-gray-900 bg-opacity-95 z-40 flex flex-col items-center justify-center"
+            variants={menuVariants}
             initial="hidden"
             animate="visible"
-            exit="hidden"
-            variants={menuVariants}
-            transition={{ duration: 0.3 }}
+            exit="exit"
           >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <Link href="/about" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                About
-              </Link>
-              <Link href="/skills" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                Skills
-              </Link>
-              <Link href="/work" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                Work
-              </Link>
-              <Link href="/contact" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                Contact
-              </Link>
-            </div>
+            <nav className="flex flex-col items-center space-y-8">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-gray-300 hover:text-white transition-colors duration-300 text-4xl"
+                  onClick={toggleMenu}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 };
 
