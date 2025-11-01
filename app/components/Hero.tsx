@@ -1,8 +1,8 @@
 "use client";
-import { Spotlight } from "../../../components/ui/Spotlight";
-import { name, Iam } from "../../data";
+import { Spotlight } from "./ui/Spotlight";
+import { name, Iam } from "../data";
 import { motion } from "framer-motion";
-import MagicButton from "../../../components/ui/MagicButton";
+import MagicButton from "./ui/MagicButton";
 import { FaLocationArrow } from "react-icons/fa";
 
 const Hero = () => {

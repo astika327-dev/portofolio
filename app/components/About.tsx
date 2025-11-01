@@ -1,5 +1,5 @@
 "use client";
-import { about } from "../../data";
+import { about } from "../data";
 import { motion } from "framer-motion";
 
 const About = () => {
@@ -23,6 +23,17 @@ const About = () => {
             <p className="mt-2 text-gray-400">{item.description}</p>
           </motion.div>
         ))}
+      </div>
+
+      <div className="mt-12 text-center">
+        {/* TODO: Add your resume.pdf to the /public folder and uncomment this button. */}
+        {/* <a href="/resume.pdf" download>
+          <MagicButton
+            title="Download CV"
+            icon={<FaDownload />}
+            position="right"
+          />
+        </a> */}
       </div>
     </section>
   );

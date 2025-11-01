@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
-import MagicButton from "../../../components/ui/MagicButton";
+import MagicButton from "./ui/MagicButton";
 
 interface ProjectCardProps {
   title: string;

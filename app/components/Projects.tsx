@@ -1,12 +1,12 @@
 "use client";
-import { projects } from "../../data";
+import { projects } from "../data";
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 
 const Projects = () => {
   return (
     <section id="projects" className="py-20">
-      <h1 className="text-xl font-bold text-center">
+      <h1 className="text-4xl font-bold text-center">
         A small selection of{" "}
         <span className="text-purple">recent projects</span>
       </h1>

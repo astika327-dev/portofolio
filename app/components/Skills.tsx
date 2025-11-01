@@ -1,5 +1,5 @@
 "use client";
-import { skills } from "../../data";
+import { skills } from "../data";
 import { motion } from "framer-motion";
 
 const Skills = () => {
