@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { name } from "./data";
 
 const Navbar = () => {
@@ -35,7 +35,7 @@ const Navbar = () => {
     { href: "#contact", label: "Contact" },
   ];
 
-  const menuVariants = {
+  const menuVariants: Variants = {
     hidden: { opacity: 0, y: "-100%" },
     visible: {
       opacity: 1,
