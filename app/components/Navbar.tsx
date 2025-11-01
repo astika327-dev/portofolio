@@ -1,12 +1,15 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence, Variants } from "framer-motion";
-import { name } from "./data";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { name } from "../data"; // Assuming data is in app/data.ts
+import { ThemeToggle } from "./ThemeToggle";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,13 +32,12 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { href: "#about", label: "About" },
-    { href: "#skills", label: "Skills" },
-    { href: "#projects", label: "Projects" },
-    { href: "#contact", label: "Contact" },
+    { href: "/about", label: "About" },
+    { href: "/projects", label: "Projects" },
+    { href: "/contact", label: "Contact" },
   ];
 
-  const menuVariants: Variants = {
+  const menuVariants = {
     hidden: { opacity: 0, y: "-100%" },
     visible: {
       opacity: 1,
@@ -58,27 +60,38 @@ const Navbar = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-          isScrolled || isOpen ? "bg-gray-900" : "bg-transparent"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled || isOpen
+            ? "bg-gray-900/80 backdrop-blur-sm"
+            : "bg-transparent"
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="flex-shrink-0">
-              <Link href="/" className="text-3xl font-bold text-white">
-                {name}
+              <Link href="/" className="text-3xl font-bold text-white tracking-wider">
+                {name} <span className="text-purple-400">.</span>
               </Link>
             </div>
             <nav className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
-                  className="text-gray-300 hover:text-white transition-colors duration-300 text-lg"
+                  className={`relative text-lg ${
+                    pathname === link.href ? "text-purple-400" : "text-gray-300"
+                  } hover:text-white transition-colors duration-300`}
                 >
                   {link.label}
-                </a>
+                  {pathname === link.href && (
+                    <motion.div
+                      className="absolute bottom-[-5px] left-0 w-full h-0.5 bg-purple-400"
+                      layoutId="underline"
+                    />
+                  )}
+                </Link>
               ))}
+              <ThemeToggle />
             </nav>
             <div className="md:hidden flex items-center">
               <button
@@ -116,14 +129,14 @@ const Navbar = () => {
           >
             <nav className="flex flex-col items-center space-y-8">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   className="text-gray-300 hover:text-white transition-colors duration-300 text-4xl"
                   onClick={toggleMenu}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </motion.div>

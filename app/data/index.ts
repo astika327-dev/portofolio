@@ -1,4 +1,7 @@
 export const name = "Astika";
+export const title = "Digital Craftsman";
+export const shortBio = "Building elegant and performant web experiences.";
+export const longBio = "I am a passionate web developer with a focus on creating beautiful, functional, and user-centered digital experiences. I thrive on turning complex problems into elegant solutions, always with a focus on quality and performance.";
 
 export const Iam = [
   "Frontend Developer",
@@ -14,74 +17,38 @@ export const socialMedia = [
 ];
 
 export const skills = [
-  {
-    name: "Web Development",
-    skills: [
-      "Frontend Development",
-      "Full-Stack Web Application Development",
-      "Web-Based Game Development",
-    ],
-  },
-  {
-    name: "AI & Data",
-    skills: [
-      "AI-Assisted Development",
-      "Prompt Engineering",
-      "API Integration",
-      "Data Analysis",
-    ],
-  },
-  {
-    name: "Management & DevOps",
-    skills: [
-      "Project Management",
-      "DevOps",
-      "Deployment",
-      "Code Refactoring",
-      "Architecture Planning",
-    ],
-  },
+  "Web Development",
+  "Frontend Development",
+  "Full-Stack Web Application Development",
+  "Web-Based Game Development",
+  "AI-Assisted Development",
+  "Prompt Engineering",
+  "Project Management",
+  "DevOps",
+  "Deployment",
+  "Code Refactoring",
+  "Architecture Planning",
+  "API Integration",
+  "Data Analysis",
 ];
 
 export const projects = [
   {
-    title: "PromptCraft",
-    image: "/assets/pcimage.png",
+    name: "PromptCraft",
     description: "Prompt builder with reusable patterns and an audit‑friendly preview.",
-    liveUrl: "https://astika322-dev.github.io/promptcraft/",
-    sourceUrl: "https://github.com/astika322-dev/promptcraft",
+    url: "https://astika322-dev.github.io/promptcraft/",
+    tags: ["React", "TypeScript", "AI"],
   },
   {
-    title: "Ops Playbook",
-    image: "/assets/opsplaybookimage.png",
+    name: "Ops Playbook",
     description: "Unified SOP/QA kit: checklists, incident notes, and audit templates.",
-    liveUrl: "https://astika322-dev.github.io/opsplaybook-hospitality/",
-    sourceUrl: "https://github.com/astika322-dev/opsplaybook-hospitality",
+    url: "https://astika322-dev.github.io/opsplaybook-hospitality/",
+    tags: ["JavaScript", "HTML/CSS", "Project Management"],
   },
   {
-    title: "Mini‑Tools",
-    image: "/assets/minitoolsimage.png",
+    name: "Mini‑Tools",
     description: "Small JS utilities: quote calculator, SOP printer, and name helper.",
-    liveUrl: "https://astika322-dev.github.io/minitools/",
-    sourceUrl: "https://github.com/astika322-dev/minitools",
+    url: "https://astika322-dev.github.io/minitools/",
+    tags: ["JavaScript", "Utilities"],
   },
 ];
-
-export const about = {
-  title: "About Me",
-  description: "I am a passionate web developer with a focus on creating beautiful, functional, and user-centered digital experiences.",
-  work: [
-    {
-      title: "Builder Mindset",
-      description: "I thrive on turning complex problems into elegant solutions, always with a focus on quality and performance.",
-    },
-    {
-      title: "Operator Discipline",
-      description: "I believe in meticulous planning, clear communication, and a process that ensures projects are delivered on time and within budget.",
-    },
-    {
-      title: "User-Centric Approach",
-      description: "I design with the end-user in mind, creating intuitive and engaging experiences that drive results.",
-    },
-  ],
-};
