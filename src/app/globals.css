@@ -93,5 +93,11 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: url('https://images.unsplash.com/photo-1629196911514-cfd8d628ba26?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlnaHQlMjBncmF5JTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA==&fm=jpg&q=60&w=3000');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    opacity: 0.8;
   }
 }
