@@ -1,8 +1,21 @@
+import Header from "@/components/ui/Header";
+import Hero from "@/components/ui/Hero";
+import About from "@/components/ui/About";
+import Skills from "@/components/ui/Skills";
+import Projects from "@/components/ui/Projects";
+import Footer from "@/components/ui/Footer";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold">Astika's Portfolio</h1>
-      <p className="mt-4 text-lg text-muted-foreground">Coming Soon</p>
-    </main>
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+      </main>
+      <Footer />
+    </>
   );
 }
