@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between p-4">
+    <header className="sticky top-0 z-50 w-full flex items-center justify-between p-4 bg-background/95 backdrop-blur-sm">
       <Link href="/" className="text-2xl font-bold">
         Astika
       </Link>
