@@ -108,18 +108,18 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 bg-gray-900 bg-opacity-95 z-40 flex flex-col items-center justify-center"
+            className="md:hidden absolute top-20 left-0 right-0 bg-gray-900 bg-opacity-95 z-40"
             variants={menuVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
           >
-            <nav className="flex flex-col items-center space-y-8">
+            <nav className="flex flex-col items-center space-y-4 py-4">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-gray-300 hover:text-white transition-colors duration-300 text-4xl"
+                  className="text-gray-300 hover:text-white transition-colors duration-300 text-lg"
                   onClick={toggleMenu}
                 >
                   {link.label}
