@@ -1,4 +1,5 @@
 import Header from "@/components/ui/Header";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 import Hero from "@/components/ui/Hero";
 import About from "@/components/ui/About";
 import Skills from "@/components/ui/Skills";
@@ -10,10 +11,18 @@ export default function Home() {
     <>
       <Header />
       <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
+        <AnimatedSection>
+          <Hero />
+        </AnimatedSection>
+        <AnimatedSection>
+          <About />
+        </AnimatedSection>
+        <AnimatedSection>
+          <Skills />
+        </AnimatedSection>
+        <AnimatedSection>
+          <Projects />
+        </AnimatedSection>
       </main>
       <Footer />
     </>

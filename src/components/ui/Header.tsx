@@ -7,9 +7,9 @@ export default function Header() {
         Astika
       </Link>
       <nav className="flex gap-4">
-        <Link href="#about">About</Link>
-        <Link href="#skills">Skills</Link>
-        <Link href="#projects">Projects</Link>
+        <Link href="#about" className="hover:text-primary transition-colors">About</Link>
+        <Link href="#skills" className="hover:text-primary transition-colors">Skills</Link>
+        <Link href="#projects" className="hover:text-primary transition-colors">Projects</Link>
       </nav>
     </header>
   );
