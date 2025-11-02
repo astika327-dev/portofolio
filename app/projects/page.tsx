@@ -56,8 +56,8 @@ const ProjectsPage = () => {
           >
             <div>
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold text-white">{project.name}</h2>
-                <Link href={project.url} target="_blank" rel="noopener noreferrer">
+                <h2 className="text-2xl font-bold text-white">{project.title}</h2>
+                <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                   <FaExternalLinkAlt className="text-gray-400 hover:text-purple-400 transition-colors duration-300" />
                 </Link>
               </div>

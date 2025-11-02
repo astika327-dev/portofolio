@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { name } from "../data"; // Assuming data is in app/data.ts
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -37,20 +37,20 @@ const Navbar = () => {
     { href: "/contact", label: "Contact" },
   ];
 
-  const menuVariants = {
-    hidden: { opacity: 0, y: "-100%" },
+  const menuVariants: Variants = {
+    hidden: { opacity: 0, y: -20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         type: "spring",
-        stiffness: 100,
+        stiffness: 120,
         damping: 20,
       },
     },
     exit: {
       opacity: 0,
-      y: "-100%",
+      y: -20,
       transition: {
         ease: "easeInOut",
       },

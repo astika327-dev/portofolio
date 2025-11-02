@@ -25,6 +25,8 @@ const AboutPage = () => {
     },
   };
 
+  const allSkills = skills.flatMap(category => category.skills);
+
   return (
     <div className="container mx-auto px-4 py-24 sm:py-32">
       <motion.div
@@ -53,7 +55,7 @@ const AboutPage = () => {
           initial="hidden"
           animate="visible"
         >
-          {skills.map((skill, index) => (
+          {allSkills.map((skill, index) => (
             <motion.div
               key={index}
               className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 text-center"
