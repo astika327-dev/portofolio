@@ -1,6 +1,5 @@
 // src/components/ui/About.tsx
 import { Code, Server, Wind, GitBranch, Database, Framer } from 'lucide-react';
-import AnimatedSection from './AnimatedSection';
 
 const skills = [
   { name: "Next.js", icon: <Code className="w-8 h-8" /> },
@@ -14,12 +13,11 @@ const skills = [
 
 export default function About() {
   return (
-    <AnimatedSection>
-      <section className="bg-secondary py-20 px-4">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-4">About Me</h2>
+    <section className="bg-secondary py-20 px-4">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-3xl font-bold mb-4">About Me</h2>
             <p className="text-muted-foreground leading-relaxed">
               I am a full-stack developer based in Bali, passionate about building fast, elegant, and conversion-driven websites. I believe a website should not only look professional but also work as a valuable asset that drives measurable results for your company. With a strong focus on user experience and performance, I turn complex problems into beautiful and intuitive digital solutions.
             </p>
@@ -38,6 +36,5 @@ export default function About() {
         </div>
       </div>
     </section>
-  </AnimatedSection>
   );
 }
