@@ -17,6 +17,9 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Astika's Portfolio",
   description: "Welcome to my personal portfolio.",
+  verification: {
+    google: "7MH78InBnZn8HuWcXtEjAX6_MRbkfgLpNVsUnWsdPGg",
+  },
 };
 
 export default function RootLayout({
