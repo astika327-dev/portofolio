@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://astika.is-a.dev
+
+# Sitemaps
+Sitemap: https://astika.is-a.dev/sitemap.xml
