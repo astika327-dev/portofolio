@@ -9,18 +9,18 @@ const projects = [
     liveUrl: "https://bali-webdevelover.com",
   },
   {
-    title: "Project Alpha",
-    description: "An e-commerce platform with a modern, clean interface and seamless user experience.",
-    tech: ["React", "Node.js", "PostgreSQL", "Stripe"],
-    imageUrl: "https://placehold.co/600x400/1a1a1a/ffffff?text=Project+Alpha",
-    liveUrl: "#",
+    title: "Promptcraft",
+    description: "An AI-powered platform for creating and sharing high-quality, enterprise-grade prompts for various applications.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "AI"],
+    imageUrl: "https://placehold.co/600x400/1a1a1a/ffffff?text=Promptcraft",
+    liveUrl: "https://promptcraft-v2.vercel.app/",
   },
   {
-    title: "Project Beta",
-    description: "A booking system for a local business, designed to streamline reservations and management.",
-    tech: ["Vue.js", "Firebase", "Vuetify"],
-    imageUrl: "https://placehold.co/600x400/1a1a1a/ffffff?text=Project+Beta",
-    liveUrl: "#",
+    title: "U2CleanPro",
+    description: "A professional cleaning service company website, designed to be user-friendly and informative for potential clients.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    imageUrl: "https://placehold.co/600x400/1a1a1a/ffffff?text=U2CleanPro",
+    liveUrl: "https://cleanpro-beryl.vercel.app/",
   },
 ];
 
