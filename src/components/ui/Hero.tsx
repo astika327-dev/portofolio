@@ -1,18 +1,60 @@
-import { ArrowDown } from 'lucide-react';
+"use client";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Mail } from "lucide-react";
+import { motion, Variants } from "framer-motion";
+import { FADE_IN_ANIMATION_VARIANTS } from "@/lib/animations";
 
 export default function Hero() {
   return (
-    <section className="flex flex-col items-center justify-center text-center py-32 px-4">
-      <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4">Putu Astika</h1>
-      <p className="max-w-2xl mt-4 text-lg text-muted-foreground mb-8">
-        I build elegant, high-performance web applications that solve real-world problems and drive business growth.
-      </p>
-      <a
-        href="#my-work" // This will be the ID of the ProjectShowcase section
-        className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded-md shadow-md bg-primary hover:bg-primary/90 focus:shadow-outline focus:outline-none"
-      >
-        View My Work <ArrowDown className="w-4 h-4 ml-2" />
-      </a>
+    <section className="relative -mt-16 w-full overflow-hidden bg-gradient-to-br from-background to-secondary/20">
+      <div className="container mx-auto flex min-h-screen items-center justify-center p-4 text-center">
+        <motion.div
+          initial="hidden"
+          animate="show"
+          viewport={{ once: true }}
+          variants={{
+            hidden: {},
+            show: {
+              transition: {
+                staggerChildren: 0.15,
+              },
+            },
+          } as Variants}
+          className="relative z-10 flex flex-col items-center"
+        >
+          <motion.h1
+            variants={FADE_IN_ANIMATION_VARIANTS}
+            className="text-5xl font-bold tracking-tight text-foreground sm:text-6xl md:text-7xl font-serif"
+          >
+            Halo, saya Putu Astika
+          </motion.h1>
+          <motion.p
+            variants={FADE_IN_ANIMATION_VARIANTS}
+            className="mt-6 max-w-2xl text-lg text-muted-foreground"
+          >
+            Seorang Web Developer yang bersemangat menciptakan pengalaman
+            digital yang intuitif dan indah.
+          </motion.p>
+          <motion.div
+            variants={FADE_IN_ANIMATION_VARIANTS}
+            className="mt-10 flex flex-wrap justify-center gap-4"
+          >
+            <Link href="/projects" passHref>
+              <Button size="lg" className="group">
+                Lihat Portofolio Saya
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
+            <Link href="/contact" passHref>
+              <Button size="lg" variant="outline">
+                <Mail className="mr-2 h-5 w-5" />
+                Hubungi Saya
+              </Button>
+            </Link>
+          </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

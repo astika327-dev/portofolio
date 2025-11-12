@@ -1,12 +1,14 @@
-export default function Footer() {
+
+import React from "react";
+
+const Footer = () => {
   return (
-    <footer className="p-4 text-center">
-      <p>
-        © 2025 Putu Astika. All rights reserved.
-      </p>
-      <p>
-        Business Website: <a href="https://bali-webdevelover.com" target="_blank" rel="noopener noreferrer">bali-webdevelover.com</a>
-      </p>
+    <footer className="bg-background border-t border-border">
+      <div className="container mx-auto px-4 py-6 text-center text-muted-foreground">
+        <p>&copy; {new Date().getFullYear()} Putu Astika. All Rights Reserved.</p>
+      </div>
     </footer>
   );
-}
+};
+
+export default Footer;
