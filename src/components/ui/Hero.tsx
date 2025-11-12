@@ -47,7 +47,7 @@ export default function Hero() {
               </Button>
             </Link>
             <Link href="/contact" passHref>
-              <Button size="lg" variant="outline">
+              <Button size="lg" variant="ghost">
                 <Mail className="mr-2 h-5 w-5" />
                 Hubungi Saya
               </Button>
