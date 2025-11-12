@@ -94,6 +94,7 @@ export default function ProjectShowcase() {
                     width={600}
                     height={400}
                     className="w-full h-48 object-cover rounded-t-lg"
+                    unoptimized
                   />
                   <CardTitle className="mt-4">{project.title}</CardTitle>
                 </CardHeader>
