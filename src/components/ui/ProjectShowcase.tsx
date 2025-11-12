@@ -45,7 +45,7 @@ const FADE_UP_ANIMATION_VARIANTS: Variants = {
 
 export default function ProjectShowcase() {
   return (
-    <section className="py-20">
+    <section className="py-16 sm:py-20">
       <div className="container mx-auto px-4">
         <motion.div
           initial="hidden"
@@ -59,13 +59,13 @@ export default function ProjectShowcase() {
         >
           <motion.h2
             variants={FADE_UP_ANIMATION_VARIANTS}
-            className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+            className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl"
           >
             Proyek Pilihan
           </motion.h2>
           <motion.p
             variants={FADE_UP_ANIMATION_VARIANTS}
-            className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground"
+            className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground"
           >
             Berikut adalah beberapa proyek yang pernah saya kerjakan.
           </motion.p>
@@ -86,21 +86,23 @@ export default function ProjectShowcase() {
               key={project.title}
               variants={FADE_UP_ANIMATION_VARIANTS}
             >
-              <Card className="h-full overflow-hidden transition-shadow duration-300 hover:shadow-lg">
+              <Card className="flex h-full flex-col overflow-hidden transition-shadow duration-300 hover:shadow-xl">
+                <Image
+                  src={project.imageUrl}
+                  alt={project.title}
+                  width={600}
+                  height={400}
+                  className="h-48 w-full object-cover"
+                  unoptimized
+                />
                 <CardHeader>
-                  <Image
-                    src={project.imageUrl}
-                    alt={project.title}
-                    width={600}
-                    height={400}
-                    className="w-full h-48 object-cover rounded-t-lg"
-                    unoptimized
-                  />
-                  <CardTitle className="mt-4">{project.title}</CardTitle>
+                  <CardTitle>{project.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <CardDescription>{project.description}</CardDescription>
-                  <Button asChild className="mt-4">
+                <CardContent className="flex flex-1 flex-col">
+                  <CardDescription className="flex-1">
+                    {project.description}
+                  </CardDescription>
+                  <Button asChild className="mt-4 w-full sm:w-auto">
                     <a
                       href={project.liveUrl}
                       target="_blank"

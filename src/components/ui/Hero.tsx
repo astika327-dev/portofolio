@@ -7,8 +7,8 @@ import { FADE_IN_ANIMATION_VARIANTS } from "@/lib/animations";
 
 export default function Hero() {
   return (
-    <section className="relative -mt-16 w-full overflow-hidden bg-gradient-to-br from-background to-secondary/20">
-      <div className="container mx-auto flex min-h-screen items-center justify-center p-4 text-center">
+    <section className="relative w-full overflow-hidden bg-gradient-to-br from-background to-secondary/20">
+      <div className="container mx-auto flex min-h-[calc(100vh-4rem)] items-center justify-center p-4 text-center">
         <motion.div
           initial="hidden"
           animate="show"

@@ -63,7 +63,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="container mx-auto max-w-screen-lg px-4 py-16">
+    <div className="container mx-auto max-w-screen-lg px-4 py-16 sm:py-20">
       <motion.div
         initial="hidden"
         animate="show"
@@ -80,13 +80,13 @@ const ContactPage = () => {
       >
         <motion.h1
           variants={FADE_IN_ANIMATION_VARIANTS}
-          className="text-4xl font-bold font-serif text-center mb-4"
+          className="text-center font-serif text-3xl font-bold sm:text-4xl md:text-5xl"
         >
           Contact Me
         </motion.h1>
         <motion.p
           variants={FADE_IN_ANIMATION_VARIANTS}
-          className="text-lg text-muted-foreground text-center mb-12 max-w-2xl"
+          className="mb-12 mt-4 max-w-2xl text-center text-lg text-muted-foreground"
         >
           I&apos;m always open to discussing new projects, creative ideas, or
           opportunities to be part of an amazing team. Feel free to reach out by
@@ -94,13 +94,16 @@ const ContactPage = () => {
         </motion.p>
 
         <div className="w-full max-w-md">
-          <motion.div variants={FADE_IN_ANIMATION_VARIANTS}>
+          <motion.div
+            variants={FADE_IN_ANIMATION_VARIANTS}
+            className="rounded-lg border bg-card p-4 shadow-sm sm:p-8"
+          >
             {status === "success" ? (
-              <div className="text-center p-8 bg-secondary rounded-lg">
-                <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
-                <p className="text-muted-foreground">
-                  Your message has been sent successfully. I will get back to you
-                  as soon as possible.
+              <div className="text-center">
+                <h3 className="text-2xl font-bold">Thank You!</h3>
+                <p className="mt-2 text-muted-foreground">
+                  Your message has been sent successfully. I will get back to
+                  you as soon as possible.
                 </p>
               </div>
             ) : (

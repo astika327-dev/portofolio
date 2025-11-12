@@ -56,45 +56,69 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4">
-        <Logo />
+    <>
+      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4">
+          <Logo />
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-4">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.href}
-              href={link.href}
-              isActive={pathname === link.href}
+          {/* Desktop Navigation */}
+          <nav className="hidden items-center gap-4 md:flex">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.href}
+                href={link.href}
+                isActive={pathname === link.href}
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-foreground"
+              aria-label="Toggle menu"
             >
-              {link.label}
-            </NavLink>
-          ))}
-        </nav>
-
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-foreground"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={isMenuOpen ? "x" : "menu"}
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </motion.div>
+              </AnimatePresence>
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
+            onClick={() => setIsMenuOpen(false)}
           >
-            <nav className="flex flex-col items-center gap-4 p-4">
+            <motion.nav
+              initial={{ y: "-100%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "-100%", opacity: 0 }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 30,
+              }}
+              className="flex flex-col items-center gap-8 bg-background p-8 pt-24"
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside nav
+            >
               {navLinks.map((link) => (
                 <NavLink
                   key={link.href}
@@ -105,10 +129,10 @@ export default function Header() {
                   {link.label}
                 </NavLink>
               ))}
-            </nav>
+            </motion.nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
