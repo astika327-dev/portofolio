@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 
-const inter = Inter({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
-const playfairDisplay = Playfair_Display({
+const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-serif",
 });
 
@@ -52,7 +53,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${playfairDisplay.variable} font-sans antialiased`}
+        className={`${plusJakartaSans.variable} ${cormorantGaramond.variable} font-sans antialiased`}
       >
         <Header />
         <main>{children}</main>
