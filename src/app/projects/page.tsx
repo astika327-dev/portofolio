@@ -1,10 +1,10 @@
-import Projects from "@/components/ui/Projects";
+import ProjectShowcase from "@/components/ui/ProjectShowcase";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 
 export default function ProjectsPage() {
   return (
     <AnimatedSection>
-      <Projects />
+      <ProjectShowcase />
     </AnimatedSection>
   );
 }
