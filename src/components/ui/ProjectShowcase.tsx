@@ -1,103 +1,136 @@
 "use client";
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const projects = [
   {
+    id: 1,
     title: "Bali WebDevelover",
-    description: "A corporate website for a web development studio in Bali, focusing on performance and elegance.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    imageUrl: "https://placehold.co/600x400/1a1a1a/ffffff?text=Bali+WebDevelover",
+    category: "Corporate Website",
+    description: "A high-performance corporate identity for a premier web development studio in Bali. Focus on elegance, SEO, and speed.",
+    tech: ["Next.js", "TypeScript", "Framer Motion"],
+    imageUrl: "https://placehold.co/800x600/1a1a1a/ffffff?text=Bali+WebDevelover", // TODO: Replace with real screenshots
     liveUrl: "https://bali-webdevelover.com",
+    colSpan: "md:col-span-2", // Large featured item
   },
   {
+    id: 2,
     title: "Promptcraft",
-    description: "An AI-powered platform for creating and sharing high-quality, enterprise-grade prompts for various applications.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "AI"],
-    imageUrl: "https://placehold.co/600x400/1a1a1a/ffffff?text=Promptcraft",
+    category: "AI SaaS Platform",
+    description: "An enterprise-grade marketplace for AI prompts. Features complex filtering, user authentication, and a modern dark UI.",
+    tech: ["Next.js", "Tailwind CSS", "AI Integration"],
+    imageUrl: "https://placehold.co/600x800/1a1a1a/ffffff?text=Promptcraft",
     liveUrl: "https://promptcraft-v2.vercel.app/",
+    colSpan: "md:col-span-1", // Tall vertical item
   },
   {
+    id: 3,
     title: "U2CleanPro",
-    description: "A professional cleaning service company website, designed to be user-friendly and informative for potential clients.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    category: "Service Business",
+    description: "A conversion-focused landing page for a professional cleaning service. Clean, trustworthy, and mobile-optimized.",
+    tech: ["React", "Tailwind", "Conversion Design"],
     imageUrl: "https://placehold.co/600x400/1a1a1a/ffffff?text=U2CleanPro",
     liveUrl: "https://cleanpro-beryl.vercel.app/",
+    colSpan: "md:col-span-1", // Standard item
   },
-];
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
+  // Add a placeholder for future work or a 'Coming Soon' card to fill the grid if needed
+  {
+    id: 4,
+    title: "More Projects",
+    category: "Archive",
+    description: "Explore my GitHub for more experimental code and open source contributions.",
+    tech: ["Open Source", "Experiments"],
+    imageUrl: "https://placehold.co/600x400/111/333?text=GitHub+Archive",
+    liveUrl: "https://github.com/astika", // Assuming this exists or use a generic link
+    colSpan: "md:col-span-2",
   }
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 }
-};
+];
 
 export default function ProjectShowcase() {
   return (
-    <section id="my-work" className="py-32 px-4 bg-secondary/30">
-      <div className="container mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold font-serif mb-4">Selected Works</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A collection of projects that demonstrate my passion for building high-quality web experiences.
-          </p>
-        </motion.div>
+    <section id="my-work" className="py-32 px-4 relative">
+       {/* Background element for section separation */}
+       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+      <div className="container mx-auto max-w-6xl">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="text-primary font-mono text-sm tracking-wider uppercase mb-2 block">Portfolio</span>
+            <h2 className="text-4xl md:text-5xl font-bold font-serif tracking-tight text-foreground">Selected Works</h2>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-muted-foreground max-w-md text-right md:text-left"
+          >
+            A curation of digital experiences built with precision, tailored for scalability and performance.
+          </motion.p>
+        </div>
         
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <motion.div variants={item} key={index} className="group bg-card border border-border/50 rounded-xl overflow-hidden hover:border-primary/50 transition-colors duration-300">
-              <div className="relative overflow-hidden aspect-video">
-                <img 
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className={cn(
+                "group relative overflow-hidden rounded-3xl bg-card border border-white/5 hover:border-white/20 transition-all duration-500",
+                project.colSpan
+              )}
+            >
+              {/* Image Background with Gradient Overlay */}
+              <div className="absolute inset-0 z-0">
+                 <img
                   src={project.imageUrl} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <a 
-                    href={project.liveUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="inline-flex items-center px-6 py-3 bg-white text-black rounded-full font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
-                  >
-                    View Project <ExternalLink className="w-4 h-4 ml-2" />
-                  </a>
-                </div>
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                 />
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-90 transition-opacity duration-500" />
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold font-serif mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, i) => (
-                    <span key={i} className="bg-secondary text-secondary-foreground text-[10px] uppercase tracking-wider font-semibold px-3 py-1 rounded-full">
-                      {tech}
+
+              {/* Content */}
+              <div className="relative z-10 p-8 h-full flex flex-col justify-end">
+                <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="text-xs font-medium text-primary/80 bg-primary/10 px-3 py-1 rounded-full backdrop-blur-md border border-primary/20">
+                      {project.category}
                     </span>
-                  ))}
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 bg-white text-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:scale-110"
+                    >
+                      <ArrowUpRight className="w-4 h-4" />
+                    </a>
+                  </div>
+
+                  <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+                  <p className="text-gray-400 text-sm mb-4 line-clamp-2 group-hover:line-clamp-none transition-all">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    {project.tech.map((t, i) => (
+                      <span key={i} className="text-xs text-gray-300 font-mono"># {t}</span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
