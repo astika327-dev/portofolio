@@ -1,5 +1,6 @@
 "use client";
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Hero() {
   return (
@@ -49,18 +50,18 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
           className="flex flex-col sm:flex-row items-center gap-4"
         >
-          <a
-            href="#my-work"
+          <Link
+            href="/projects"
             className="h-12 px-8 rounded-full bg-foreground text-background font-medium flex items-center justify-center hover:bg-gray-200 transition-colors w-full sm:w-auto"
           >
             View My Work
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            href="/contact"
             className="h-12 px-8 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-foreground font-medium flex items-center justify-center hover:bg-white/10 transition-colors w-full sm:w-auto"
           >
             Contact Me
-          </a>
+          </Link>
         </motion.div>
 
         {/* Social/Tech Stack Indicators */}
