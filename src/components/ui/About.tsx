@@ -17,7 +17,7 @@ export default function About() {
           >
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/10">
                <img
-                  src="https://placehold.co/800x1000/111/333?text=Profile+Image" // TODO: User to replace
+                  src="/images/profile.png"
                   alt="Putu Astika"
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                />
@@ -59,12 +59,12 @@ export default function About() {
 
              <div className="mt-10 flex items-center gap-6">
                 <div className="flex flex-col">
-                   <span className="text-3xl font-bold text-white">3+</span>
+                   <span className="text-3xl font-bold text-white">1</span>
                    <span className="text-sm text-muted-foreground uppercase tracking-wider">Years Exp.</span>
                 </div>
                 <div className="w-px h-12 bg-white/10" />
                 <div className="flex flex-col">
-                   <span className="text-3xl font-bold text-white">20+</span>
+                   <span className="text-3xl font-bold text-white">5+</span>
                    <span className="text-sm text-muted-foreground uppercase tracking-wider">Projects</span>
                 </div>
              </div>

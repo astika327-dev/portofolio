@@ -1,97 +1,36 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-
-@plugin "tailwindcss-animate";
-
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  --font-sans: var(--font-sans);
-  --font-serif: var(--font-serif);
-
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-
-  /* Custom Animations */
-  --animate-shimmer: shimmer 2s linear infinite;
-  --animate-spotlight: spotlight 2s ease .75s 1 forwards;
-
-  @keyframes shimmer {
-    from { background-position: 0 0; }
-    to { background-position: -200% 0; }
-  }
-
-  @keyframes spotlight {
-    0% {
-      opacity: 0;
-      transform: translate(-72%, -62%) scale(0.5);
-    }
-    100% {
-      opacity: 1;
-      transform: translate(-50%,-40%) scale(1);
-    }
-  }
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   /* Base - Deep Dark Elegant */
   --background: #050505; /* Near black */
-  --foreground: #FAFAFA; /* Off-white */
+  --foreground: #fafafa; /* Off-white */
 
   /* Cards - Slightly lighter than background */
-  --card: #0A0A0A;
-  --card-foreground: #FAFAFA;
+  --card: #0a0a0a;
+  --card-foreground: #fafafa;
 
   /* Popovers */
-  --popover: #0A0A0A;
-  --popover-foreground: #FAFAFA;
+  --popover: #0a0a0a;
+  --popover-foreground: #fafafa;
 
   /* Primary - Using a sophisticated white/silver or a deep accent */
   /* Option A: Minimalist monochrome primary */
-  --primary: #FAFAFA;
+  --primary: #fafafa;
   --primary-foreground: #050505;
 
   /* Secondary - Subtle gray */
   --secondary: #171717;
-  --secondary-foreground: #FAFAFA;
+  --secondary-foreground: #fafafa;
 
   /* Muted */
   --muted: #171717;
-  --muted-foreground: #A1A1AA; /* Zinc 400 */
+  --muted-foreground: #a1a1aa; /* Zinc 400 */
 
   /* Accent - Used for hover states, can be a subtle Indigo or Slate */
   --accent: #171717;
-  --accent-foreground: #FAFAFA;
+  --accent-foreground: #fafafa;
 
   /* Destructive */
   --destructive: #7f1d1d;
@@ -100,32 +39,36 @@
   /* Borders - Very subtle */
   --border: #262626; /* Neutral 800 */
   --input: #262626;
-  --ring: #D4D4D8; /* Zinc 300 */
+  --ring: #d4d4d8; /* Zinc 300 */
 
   --radius: 0.5rem;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
 }
+
 
 /* We are enforcing dark mode by default given the "Dark Elegant" requirement */
 .dark {
   --background: #050505;
-  --foreground: #FAFAFA;
-  --card: #0A0A0A;
-  --card-foreground: #FAFAFA;
-  --popover: #0A0A0A;
-  --popover-foreground: #FAFAFA;
-  --primary: #FAFAFA;
+  --foreground: #fafafa;
+  --card: #0a0a0a;
+  --card-foreground: #fafafa;
+  --popover: #0a0a0a;
+  --popover-foreground: #fafafa;
+  --primary: #fafafa;
   --primary-foreground: #050505;
   --secondary: #171717;
-  --secondary-foreground: #FAFAFA;
+  --secondary-foreground: #fafafa;
   --muted: #171717;
-  --muted-foreground: #A1A1AA;
+  --muted-foreground: #a1a1aa;
   --accent: #171717;
-  --accent-foreground: #FAFAFA;
+  --accent-foreground: #fafafa;
   --destructive: #7f1d1d;
   --destructive-foreground: #fef2f2;
   --border: #262626;
   --input: #262626;
-  --ring: #D4D4D8;
+  --ring: #d4d4d8;
 }
 
 @layer base {
@@ -157,6 +100,6 @@
   }
 
   .text-gradient-gold {
-     @apply bg-clip-text text-transparent bg-gradient-to-b from-[#FCD34D] to-[#D97706];
+    @apply bg-clip-text text-transparent bg-gradient-to-b from-[#FCD34D] to-[#D97706];
   }
 }

@@ -1,47 +1,31 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
 });
 
-const cormorantGaramond = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-serif",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Astika's Portfolio",
-  description: "A professional portfolio showcasing the work of Putu Astika, a full-stack developer based in Bali.",
-  verification: {
-    google: "7MH78InBnZn8HuWcXtEjAX6_MRbkfgLpNVsUnWsdPGg",
-  },
+  title: "Putu Astika - Full Stack Developer",
+  description: "Full-stack developer specializing in building enterprise-grade web applications with modern technologies. Based in Bali, Indonesia.",
+  keywords: ["Full Stack Developer", "Web Developer", "Bali", "Indonesia", "React", "Next.js", "TypeScript"],
+  authors: [{ name: "Putu Astika" }],
   openGraph: {
-    title: "Astika's Portfolio",
-    description: "A professional portfolio showcasing the work of Putu Astika, a full-stack developer based in Bali.",
-    url: "https://astika.is-a.dev",
-    siteName: "Astika's Portfolio",
-    images: [
-      {
-        // TODO: Replace with a custom-designed OG image
-        url: 'https://placehold.co/1200x630/111827/E5E7EB?text=Astika.is-a.dev',
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: "Astika's Portfolio",
-    description: "A professional portfolio showcasing the work of Putu Astika, a full-stack developer based in Bali.",
-    images: ['https://placehold.co/1200x630/111827/E5E7EB?text=Astika.is-a.dev'],
+    title: "Putu Astika - Full Stack Developer",
+    description: "Full-stack developer specializing in building enterprise-grade web applications with modern technologies.",
+    type: "website",
+    locale: "en_US",
   },
 };
 
@@ -51,10 +35,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${plusJakartaSans.variable} ${cormorantGaramond.variable} font-sans antialiased`}
-      >
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <body className="antialiased">
         <Header />
         <main>{children}</main>
         <Footer />
