@@ -64,21 +64,28 @@ export default function Hero() {
           </Link>
         </motion.div>
 
-        {/* Social/Tech Stack Indicators */}
+        {/* Tech Stack Indicators */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
-          className="mt-20 pt-10 border-t border-white/5 w-full max-w-4xl flex justify-center md:justify-between items-center flex-wrap gap-8 text-muted-foreground"
+          className="mt-20 pt-10 border-t border-white/5 w-full max-w-4xl"
         >
-            <span className="text-sm uppercase tracking-widest opacity-50">Trusted by innovative companies</span>
-            {/* Placeholders for logos or icons to add 'enterprise' feel */}
-            <div className="flex gap-6 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-               {/* Just generic tech circles for now or company names if available */}
-               <div className="h-8 w-8 bg-white/10 rounded-full animate-pulse" />
-               <div className="h-8 w-8 bg-white/10 rounded-full animate-pulse delay-75" />
-               <div className="h-8 w-8 bg-white/10 rounded-full animate-pulse delay-150" />
-               <div className="h-8 w-8 bg-white/10 rounded-full animate-pulse delay-200" />
+            <span className="text-sm uppercase tracking-widest text-muted-foreground/50 block text-center mb-6">Technologies I Work With</span>
+            <div className="flex justify-center items-center flex-wrap gap-6 md:gap-10">
+               {[
+                 { name: "Next.js", icon: "⚡" },
+                 { name: "React", icon: "⚛️" },
+                 { name: "TypeScript", icon: "📘" },
+                 { name: "Node.js", icon: "🟢" },
+                 { name: "Tailwind", icon: "🎨" },
+                 { name: "PostgreSQL", icon: "🐘" },
+               ].map((tech, i) => (
+                 <div key={i} className="flex items-center gap-2 text-muted-foreground hover:text-white transition-colors duration-300">
+                   <span className="text-lg">{tech.icon}</span>
+                   <span className="text-sm font-medium">{tech.name}</span>
+                 </div>
+               ))}
             </div>
         </motion.div>
       </div>

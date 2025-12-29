@@ -59,13 +59,18 @@ export default function About() {
 
              <div className="mt-10 flex items-center gap-6">
                 <div className="flex flex-col">
-                   <span className="text-3xl font-bold text-white">1</span>
+                   <span className="text-3xl font-bold text-white">2+</span>
                    <span className="text-sm text-muted-foreground uppercase tracking-wider">Years Exp.</span>
                 </div>
                 <div className="w-px h-12 bg-white/10" />
                 <div className="flex flex-col">
-                   <span className="text-3xl font-bold text-white">5+</span>
+                   <span className="text-3xl font-bold text-white">10+</span>
                    <span className="text-sm text-muted-foreground uppercase tracking-wider">Projects</span>
+                </div>
+                <div className="w-px h-12 bg-white/10" />
+                <div className="flex flex-col">
+                   <span className="text-3xl font-bold text-white">20+</span>
+                   <span className="text-sm text-muted-foreground uppercase tracking-wider">Clients</span>
                 </div>
              </div>
           </motion.div>

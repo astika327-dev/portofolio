@@ -10,7 +10,8 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <AnimatedSection>
-      <ProjectShowcase />
+      <ProjectShowcase showAll={true} />
     </AnimatedSection>
   );
 }
+
