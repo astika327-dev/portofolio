@@ -72,19 +72,14 @@ export default function Hero() {
           className="mt-20 pt-10 border-t border-white/5 w-full max-w-4xl"
         >
             <span className="text-sm uppercase tracking-widest text-muted-foreground/50 block text-center mb-6">Technologies I Work With</span>
-            <div className="flex justify-center items-center flex-wrap gap-6 md:gap-10">
-               {[
-                 { name: "Next.js", icon: "⚡" },
-                 { name: "React", icon: "⚛️" },
-                 { name: "TypeScript", icon: "📘" },
-                 { name: "Node.js", icon: "🟢" },
-                 { name: "Tailwind", icon: "🎨" },
-                 { name: "PostgreSQL", icon: "🐘" },
-               ].map((tech, i) => (
-                 <div key={i} className="flex items-center gap-2 text-muted-foreground hover:text-white transition-colors duration-300">
-                   <span className="text-lg">{tech.icon}</span>
-                   <span className="text-sm font-medium">{tech.name}</span>
-                 </div>
+            <div className="flex justify-center items-center flex-wrap gap-4 md:gap-8">
+               {["Next.js", "React", "TypeScript", "Node.js", "Tailwind", "PostgreSQL"].map((tech, i) => (
+                 <span 
+                   key={i} 
+                   className="text-sm font-medium text-muted-foreground hover:text-white transition-colors duration-300 px-3 py-1.5 rounded-full border border-white/5 hover:border-white/20"
+                 >
+                   {tech}
+                 </span>
                ))}
             </div>
         </motion.div>
